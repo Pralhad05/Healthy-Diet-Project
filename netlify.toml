@@ -6,6 +6,9 @@
 [build.environment]
   PYTHON_VERSION = "3.9"
   PIP_VERSION = "21.3.1"
+  FLASK_APP = "appmy.py"
+  FLASK_ENV = "production"
+  PYTHONUNBUFFERED = "1"
 
 [[redirects]]
   from = "/*"
@@ -14,4 +17,17 @@
 
 [functions]
   directory = "functions"
-  node_bundler = "esbuild" 
+  node_bundler = "esbuild"
+
+[build.processing]
+  skip_processing = false
+  [build.processing.css]
+    bundle = true
+    minify = true
+  [build.processing.js]
+    bundle = true
+    minify = true
+  [build.processing.html]
+    pretty_urls = true
+  [build.processing.images]
+    compress = true 
