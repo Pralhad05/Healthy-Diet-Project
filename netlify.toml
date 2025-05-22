@@ -1,6 +1,6 @@
 [build]
   command = "pip install -r requirements.txt && python build.py"
-  publish = "build"
+  publish = "build/static"
   functions = "functions"
 
 [build.environment]
@@ -15,7 +15,7 @@
 
 [[redirects]]
   from = "/*"
-  to = "/.netlify/functions/flask_app"
+  to = "/index.html"
   status = 200
 
 [functions]

@@ -34,7 +34,7 @@ def create_build_directory():
     if os.path.exists('static'):
         shutil.copytree('static', 'build/static', dirs_exist_ok=True)
     if os.path.exists('templates'):
-        shutil.copytree('templates', 'build/templates', dirs_exist_ok=True)
+        shutil.copytree('templates', 'build/static/templates', dirs_exist_ok=True)
     
     # Create serverless function
     with open('build/functions/flask_app.py', 'w') as f:
