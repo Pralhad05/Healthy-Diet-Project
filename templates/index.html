@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy Diet Plan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="{{ url_for('static', filename='7021887_Vegetables_Fruits_4096x2160.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="{{ url_for('home') }}" style="text-decoration: none;">
+                    <h1>Healthy Diet Plans</h1>
+                </a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+            <ul id="nav-links">
+                <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+                <li><a href="{{ url_for('bmi_calculator') }}">BMI Calculator</a></li>
+                <li><a href="{{ url_for('calorie_calculator') }}">Calorie Calculator</a></li>
+                <li><a href="{{ url_for('diet_plan') }}">Diet Plan</a></li>
+                <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
+                <li><a href="{{ url_for('blog') }}">Blog</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h2>Start Your Healthy Journey Today!</h2>
+            <p>Explore daily diet plans to live a healthier, happier life.</p>
+            <a href="{{ url_for('foodsug') }}" class="btn-primary">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Meal Plans Section -->
+    <section class="meal-plans">
+        <h2>Our Meal Plans</h2>
+        <div class="plan-container">
+            <div class="plan-card" data-plan="weight-loss">
+                <h3>Weight Loss</h3>
+                <p>Achieve your fitness goals with our tailored weight loss meal plan.</p>
+            </div>
+            <div class="plan-card" data-plan="muscle-gain">
+                <h3>Muscle Gain</h3>
+                <p>Fuel your muscles with high-protein, nutrient-rich meals.</p>
+            </div>
+            <div class="plan-card" data-plan="balanced-meals">
+                <h3>Balanced Meals</h3>
+                <p>For a well-rounded, nutritious diet.</p>
+            </div>
+        </div>
+    </section>
+
+      <!-- Chatbot Icon & Container --> 
+<div class="chatbot-wrapper"> 
+    <div class="chat-icon" onclick="toggleChatbot()"></div> 
+ 
+    <div class="chatbot-container" id="chatbot"> 
+        <div class="chat-header">Ask Me About Health!</div> 
+        <div class="chat-box" id="chatBox"></div> 
+        <div class="chat-input-area"> 
+            <input type="text" id="chatInput" placeholder="Type your question..." /> 
+            <button onclick="sendChat()">Send</button> 
+        </div> 
+    </div> 
+</div> 
+     
+</section>     
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 Healthy Diet Plans | All rights reserved.</p>
+    </footer>
+
+<!-- javaScript Section for page -->
+<script> 
+        function sendChat() { 
+            const input = document.getElementById('chatInput'); 
+            const message = input.value.trim(); 
+            if (!message) return; 
+     
+            addMessage('user', message); 
+            input.value = ''; 
+     
+            // Simulated Bot Response 
+            setTimeout(() => { 
+                const response = getBotResponse(message.toLowerCase()); 
+                addMessage('bot', response); 
+            }, 500); 
+        } 
+     
+        function addMessage(sender, text) { 
+            const msg = document.createElement('div'); 
+            msg.className = sender === 'user' ? 'user-msg' : 'bot-msg'; 
+            msg.textContent = text; 
+     
+            document.getElementById('chatBox').appendChild(msg); 
+            document.getElementById('chatBox').scrollTop = 
+    document.getElementById('chatBox').scrollHeight; 
+        } 
+     
+        function getBotResponse(input) { 
+            if (input.includes('hi')) return `          Hey there! Welcome to HealthyBot! 
+    I'm here to help you with diet tips,Let’s make healthy living easy and fun!        `; 
+            if (input.includes('bmi')) return "You can use our BMI calculator to find your Body Mass Index!"; 
+            if (input.includes('calorie')) return "Check out the Calorie Calculator on the homepage to manage your intake."; 
+            if (input.includes('water')) return "Drinking 8 glasses (about 2 liters) a day is a good target!"; 
+            if (input.includes('fruit')) return "Fruits like berries, bananas, and oranges are rich in vitamins."; 
+            if (input.includes('diet')) return "Explore our meal plans for weight loss, muscle gain, and balanced meals!"; 
+            if (input.includes('exercise')) return "30 minutes of moderate exercise 5 times a week is a healthy goal!"; 
+            if (input.includes('plan')) return "         We offer custom diet plans for various goals — visit the Meal Plans section!"; 
+            if (input.includes('recipe')) return "     Looking for healthy recipes? Check out the Recipes section for ideas!"; 
+            if (['blog', 'tips', 'trends', 'advice'].some(keyword => input.includes(keyword))) 
+        return "    Dive into our blog for the latest health tips, trends, and wellness advice!"; 
+     
+            if (input.includes('contact')) return " You can reach out to us through the Contact page. We're here to help!"; 
+     
+            return "I'm still learning! Try asking about BMI, calories, water, or diet tips."; 
+        } 
+    </script> 
+     
+    <script> 
+        // Toggle chatbot visibility 
+        document.getElementById("chatbotToggle").addEventListener("click", function () { 
+            const chatbot = document.getElementById("chatbot"); 
+            chatbot.classList.toggle("hidden"); 
+        }); 
+     
+        // Existing sendChat(), addMessage(), getBotResponse() functions remain unchanged 
+    </script> 
+     
+    <script> 
+        function toggleChatbot() { 
+            const chatbot = document.getElementById('chatbot'); 
+            chatbot.classList.toggle('open'); 
+        } 
+     
+        
+        function openModal(id) { 
+            document.getElementById(id).style.display = 'flex'; 
+        } 
+     
+        function closeModal(id) { 
+            document.getElementById(id).style.display = 'none'; 
+        } 
+     
+        function switchModal(currentId, targetId) { 
+            closeModal(currentId); 
+            openModal(targetId); 
+        } 
+     
+        // Optional: click outside to close 
+        window.addEventListener('click', function(e) { 
+            document.querySelectorAll('.modal-overlay').forEach(modal => { 
+                if (e.target === modal) modal.style.display = 'none'; 
+    }); 
+    }); 
+</script>
+
+<!-- Hide Header on Scroll Down, Show on Scroll Up -->
+
+    <script>
+        // Toggle Menu on Mobile
+        const toggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+    
+        toggle.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+    
+        // Hide Header on Scroll Down, Show on Scroll Up
+        let lastScrollTop = 0;
+        const header = document.querySelector("header");
+    
+        window.addEventListener("scroll", function () {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                // Scroll down
+                header.style.top = "-100px";
+            } else {
+                // Scroll up
+                header.style.top = "0";
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+    </script>
+
+</body>
+</html>

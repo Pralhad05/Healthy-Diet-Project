@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+    
+        
+        body { 
+            background-image: url('static/Screenshot 2025-03-23 220744.png'); 
+            background-size: cover; 
+            background-position: center center; 
+            background-attachment: fixed; 
+            color: #2c3e50; 
+            line-height: 1.6; 
+            padding: 20px; 
+            padding-top: 0; 
+            margin-top: 0; 
+        } 
+
+    
+        header {
+            background: rgba(0, 184, 148, 0.9);
+            padding: 15px 30px;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+    
+        .logo h1 {
+            font-size: 24px;
+        }
+    
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+    
+        nav li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+    
+        nav li a:hover, nav li a.active {
+            background: #019875;
+        }
+    
+        h2, h3 {
+            margin: 20px 0 10px;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 10px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+    
+        form {
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+    
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+    
+        button {
+            background: #00b894;
+            color: white;
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+    
+        button:hover {
+            background: #019875;
+        }
+    
+        .recipe-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+    
+        .recipe-card img {
+            margin-top: 10px;
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+        }
+    
+        .recipe-actions {
+            margin-top: 10px;
+        }
+    
+        .recipe-actions form {
+            display: inline;
+            margin-right: 5px;
+        }
+    
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+    
+            .logo h1 {
+                font-size: 20px;
+            }
+    
+            .recipe-card img {
+                max-width: 100%;
+            }
+        }
+
+        .btn-danger {
+  background-color: #dc3545;
+  color: white;
+  padding: 10px 20px; /* Adds padding for better spacing */
+  border-radius: 5px; /* Rounds the corners */
+  font-size: 16px; /* Adjusts font size */
+  font-weight: bold; /* Makes the text bold */
+  border: none; /* Removes any default border */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.btn-danger:hover {
+  background-color: #c82333; /* Darkens the button color when hovered */
+  transform: scale(1.05); /* Slightly increases the size on hover */
+  cursor: pointer; /* Changes cursor to pointer when hovered */
+}
+
+.btn-danger:focus {
+  outline: none; /* Removes outline on focus */
+  box-shadow: 0 0 5px rgba(220, 53, 69, 0.5); /* Adds a glow effect on focus */
+}
+
+    </style>
+    
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="{{ url_for('home') }}" style="text-decoration: none; color: white;">
+                    <h1>Healthy Diet Plans</h1>
+                </a>
+            </div>
+            <ul>
+                <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+                <li><a href="{{ url_for('bmi_calculator') }}">BMI Calculator</a></li>
+                <li><a href="{{ url_for('calorie_calculator') }}">Calorie Calculator</a></li>
+                <li><a href="{{ url_for('diet_plan') }}">Diet Plan</a></li>
+                <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
+                <li><a href="{{ url_for('blog') }}">Blog</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Welcome {{ session['username'] }}! Share Your Recipe</h2>
+        <main>
+        <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+        <form action="{{ url_for('recipes') }}" method="POST" enctype="multipart/form-data">
+            <input type="text" name="title" placeholder="Recipe Title" required>
+            <textarea name="content" placeholder="Recipe Content" required></textarea>
+            <input type="file" name="image">
+            <button type="submit">Submit Recipe</button>
+        </form>
+
+        <hr>
+
+        <h3>All Recipes</h3>
+        {% for recipe in recipes %}
+        <div class="recipe-card">
+            <h4>{{ recipe.title }} <small>by {{ recipe.username }}</small></h4>
+            <p>{{ recipe.content }}</p>
+            {% if recipe.image %}
+    <img src="{{ url_for('static', filename='uploads/' + recipe.image.replace('\\', '/')) }}" alt="Recipe Image">
+{% else %}
+    <p>No image available.</p>
+{% endif %}
+
+
+           
+       
+            <div class="recipe-actions">
+                <form action="{{ url_for('like_recipe', recipe_id=recipe.id) }}" method="POST">
+                    <button type="submit">👍 {{ recipe.likes }}</button>
+                </form>
+                <form action="{{ url_for('dislike_recipe', recipe_id=recipe.id) }}" method="POST">
+                    <button type="submit">👎 {{ recipe.dislikes }}</button>
+                </form>
+                <form action="{{ url_for('share_recipe', recipe_id=recipe.id) }}" method="POST">
+                    <button type="submit">🔗 Share</button>
+                </form>
+                {% if session['username'] == recipe.username or session['username'] == 'pratham' %}
+                    <form action="{{ url_for('delete_recipe', recipe_id=recipe.id) }}" method="POST">
+                        <button type="submit">🗑 Delete</button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </main>
+</body>
+</html>

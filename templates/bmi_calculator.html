@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+
+    /* General Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    html, body {
+        height: 100%;
+    }
+
+    body {
+    background-image: url('static/Screenshot 2025-03-23 220744.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    background-attachment: fixed;
+    color: #2c3e50;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+
+.container {
+    max-width: 1200px;       /* Set a nice readable width */
+    margin: 40px auto;       /* Center horizontally, space from top */
+    padding: 0 20px;         /* Horizontal padding inside container */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+    /* Header Styles - Unified */
+    header {
+    background-color: rgba(122, 67, 177, 0.8);
+    padding: 20px 40px; /* Reduced padding */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid white; /* 👈 Add this line */
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;  /* Allow full width */
+    padding: 0 20px;  /* Reduce if needed */
+    margin: 0;
+    height: 60px;
+}
+
+
+.logo {
+    margin-left: 10px;  /* Pushes it closer to the edge */
+    flex-shrink: 0;     /* Prevent it from shrinking */
+}
+
+.logo h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 75px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px 14px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    line-height: 1;
+}
+
+header nav ul li a:hover {
+        background-color: #e74c3c;
+        transform: scale(1.1) translateY(-5px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo a {
+        color: white;
+        text-decoration: none;
+    }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        /* User Info */
+        .user-info {
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.9); /* Make it transparent with 50% opacity */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+}
+
+        .user-info h2 {
+            font-size: 2.5rem;
+            color: #3498db;
+        }
+
+        .user-info form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .user-info label {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+        }
+
+        .user-info input, .user-info select {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .user-info button {
+            padding: 12px 25px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .user-info button:hover {
+            background-color: #27ae60;
+        }
+
+        /* Result Box */
+        .result-box {
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.9); /* Make it transparent with 50% opacity */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+        .result-box h3 {
+            font-size: 2.2rem;
+            color: #3498db;
+        }
+
+        #bmiResultBold {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2ecc71;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px 0;
+            background-color: #2c3e50;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        /* 3D BMI Scale */
+        .bmi-scale-container {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    margin-top: 30px;
+    background: linear-gradient(to right, #f1c40f 25%, #2ecc71 25%, #2ecc71 50%, #e67e22 50%, #e74c3c 75%);
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+#bmiScale {
+    position: absolute;
+    top: -10px;
+    width: 50px;
+    height: 80px;
+    background-color: rgba(52, 73, 94, 0.5); /* semi-transparent dark blue-gray */
+    border-radius: 10px;
+    transition: left 0.3s ease;
+    z-index: 10;
+}
+
+
+/* Label container */
+.bmi-range-labels {
+    position: absolute;
+    bottom: -25px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+
+        .underweight {
+            left: 5%;
+            background-color: #f39c12;
+        }
+
+        .normal {
+            left: 35%;
+            background-color: #2ecc71;
+        }
+
+        .overweight {
+            left: 65%;
+            background-color: #e74c3c;
+        }
+
+        .obesity {
+            left: 90%;
+            background-color: #e74c3c;
+        }
+
+        .bmi-range-labels {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .bmi-range-labels span {
+            text-align: center;
+            text-shadow: 0 0 3px rgba(0,0,0,0.5);
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .user-info, .result-box {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+    /* adjust properly on any screen size (mobile, tablet, laptop, desktop) */ 
+/* Medium Devices (Tablets, 768px and up) */
+@media (max-width: 992px) {
+    header nav ul {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    header nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .contact-card, .website-info {
+        padding: 20px;
+    }
+
+    .logo h1 {
+        font-size: 2rem;
+    }
+
+    header nav ul li a {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+}
+/* Small Devices (Phones, 600px and below) */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    header {
+        padding: 10px 20px;
+        margin-left: -10px;
+    }
+
+    .logo h1 {
+        font-size: 1.5rem;
+        text-align: center;
+        width: 100%;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+        width: 100%;
+    }
+
+    header nav ul li a {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .contact-card, .website-info {
+        margin-top: 20px;
+        padding: 15px;
+        font-size: 1rem;
+    }
+
+    .website-info h3 {
+        font-size: 1.5rem;
+    }
+
+    .contact-info h2 {
+        font-size: 2rem;
+    }
+
+    .contact-card button {
+        width: 100%;
+    }
+
+    footer {
+        font-size: 0.9rem;
+        padding: 10px 0;
+    }
+}
+
+/* Hamburger Button Style */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+}
+
+/* Responsive Navigation */
+@media (max-width: 992px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    header nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(122, 67, 177, 0.95);
+        margin-top: 10px;
+    }
+
+    #nav-links.show {
+        display: flex;
+    }
+
+    #nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    #nav-links li a {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+    }
+}
+
+/* Medium Screens: Resize fonts better on smaller laptops/tablets */
+@media (max-width: 992px) {
+    .logo h1 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    header nav ul li a {
+        font-size: 0.95rem;
+        padding: 6px 12px;
+    }
+
+    .menu-toggle {
+        font-size: 1.8rem;
+    }
+
+    body {
+        font-size: 0.95rem;
+    }
+}
+
+/* Slightly smaller text for tighter split screens */
+@media (max-width: 992px) {
+    .logo h1 {
+        font-size: 1.6rem;
+    }
+
+    header nav ul li a {
+        font-size: 0.9rem;
+    }
+
+    body {
+        font-size: 0.9rem;
+    }
+}
+
+/* Scroll hide/show animation */
+header {
+    transition: top 0.3s;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="{{ url_for('home') }}" style="text-decoration: none;">
+                    <h1>Healthy Diet Plans</h1>
+                </a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+            <ul id="nav-links">
+                <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+                <li><a href="{{ url_for('bmi_calculator') }}">BMI Calculator</a></li>
+                <li><a href="{{ url_for('calorie_calculator') }}">Calorie Calculator</a></li>
+                <li><a href="{{ url_for('diet_plan') }}">Diet Plan</a></li>
+                <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
+                <li><a href="{{ url_for('blog') }}">Blog</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+
+    <!-- Main Container: User Info and Result Box -->
+    <div class="container">
+        <!-- User Info Form -->
+        <div class="user-info">
+            <h2>Your Personalized Diet Plan</h2>
+            <h3>Enter Your Information:</h3>
+            <form id="userForm">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required><br>
+
+                <label for="height">Height (cm):</label>
+                <input type="number" id="height" name="height" required><br>
+
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" name="weight" required><br>
+
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select><br>
+
+                <label for="dietType">Diet Type:</label>
+                <select id="dietType" name="dietType" required>
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="non-vegetarian">Non-Vegetarian</option>
+                </select><br>
+
+                <label for="goal">Goal:</label>
+                <select id="goal" name="goal" required>
+                    <option value="weightLoss">Weight Loss</option>
+                    <option value="muscleGain">Muscle Gain</option>
+                    <option value="balancedMeals">Balanced Meals</option>
+                </select><br>
+
+                <button type="submit">Calculate BMI</button>
+            </form>
+            <strong><p id="bmiResult"></p></strong>
+            <p id="message" style="font-size: 1rem; color: #fff;">Please fill out your details to calculate your BMI.</p>
+        </div>
+
+        <!-- Result Box -->
+        <div class="result-box">
+            <h3>Your BMI Result</h3>
+            <p id="bmiResultBold"></p>
+            <p id="bmiStatus">Your BMI category will be displayed here.</p>
+            
+            <!-- 3D BMI Scale Visualization -->
+            <div class="bmi-scale-container">
+                <div id="bmiScale"></div>
+                <div class="bmi-range-labels">
+                    <span>Underweight</span>
+                    <span>Normal</span>
+                    <span>Overweight</span>
+                    <span>Obesity</span>
+                </div>
+            </div>
+            
+
+            <div id="dietDetails">
+                <h3>Suggested Diet Plan:</h3>
+                <p id="mealPlan"></p>
+                <p id="exercisePlan"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 Healthy Diet Plans | All Rights Reserved</p>
+    </footer>
+
+    <script>
+    $(document).ready(function() {
+        $('#userForm').submit(function(e) {
+            e.preventDefault();
+            
+            const age = parseInt($('#age').val());
+            const height = parseInt($('#height').val());
+            const weight = parseInt($('#weight').val());
+            const gender = $('#gender').val();
+            const dietType = $('#dietType').val();
+            const goal = $('#goal').val();
+
+            const bmi = calculateBMI(weight, height);
+
+            // Display BMI result in text
+            $('#bmiResult').text(`Your BMI is ${bmi.toFixed(1)}.`);
+            $('#bmiResultBold').text(`BMI: ${bmi.toFixed(1)}`).css('font-size', '2rem').css('font-weight', 'bold');
+
+            // Determine BMI status and color coding
+            let bmiStatus = '';
+            let bmiColor = '';
+            let scalePosition = 0;  // The position for the scale
+
+            if (bmi < 18.5) {
+    bmiStatus = 'Underweight';
+    bmiColor = 'blue';
+    scalePosition = 10;
+} else if (bmi >= 18.5 && bmi < 24.9) {
+    bmiStatus = 'Normal weight';
+    bmiColor = 'green';
+    scalePosition = 30;
+} else if (bmi >= 25 && bmi < 29.9) {
+    bmiStatus = 'Overweight';
+    bmiColor = 'orange';
+    scalePosition = 55;
+} else {
+    bmiStatus = 'Obesity';
+    bmiColor = 'red';
+    scalePosition = 80;
+}
+$('#bmiScale').css('left', `${scalePosition}%`);
+
+
+
+            // Apply color to the BMI status
+            $('#bmiStatus').text(`You are classified as: ${bmiStatus}`).css('color', bmiColor);
+            $('#bmiResultBold').css('color', bmiColor);
+
+            // Show scale and set position of the BMI indicator
+            $('#bmiScale').css('left', `${scalePosition}%`);
+
+            // Suggest diet plan based on the goal
+            suggestPlan(bmi, dietType, goal);
+        });
+
+        function calculateBMI(weight, height) {
+            return weight / ((height / 100) * (height / 100));
+        }
+
+        function suggestPlan(bmi, dietType, goal) {
+            let suggestedPlan = '';
+            let meals = '';
+            let exercises = '';
+
+            if (bmi < 18.5) {
+                suggestedPlan = 'You need to focus on gaining weight in a healthy way with a balanced intake of calories, protein, and vitamins.';
+                meals = ` 
+                    <ul>
+                        <li>Protein: Increase protein intake (chicken, tofu, eggs, legumes) to build muscle mass.</li>
+                        <li>Fiber: Incorporate high-fiber foods (whole grains, vegetables) for overall health.</li>
+                        <li>Vitamins: Ensure a high intake of vitamins (fruits and vegetables).</li>
+                        <li>Calories: Focus on consuming higher-calorie foods to meet your energy needs.</li>
+                    </ul>`;
+                exercises = `
+                    <ul>
+                        <li>Strength Training (45 min): Focus on muscle-building exercises.</li>
+                        <li>Core Exercises (30 min): Improve stability and strength.</li>
+                    </ul>`;
+            } else if (bmi >= 18.5 && bmi < 24.9) {
+                suggestedPlan = 'Your weight is within a healthy range. Focus on maintaining this balance.';
+                meals = `
+                    <ul>
+                        <li>Protein: Moderate protein intake to maintain muscle mass (lean meats, beans, fish).</li>
+                        <li>Fiber: Continue with a good intake of fiber (vegetables, fruits, whole grains).</li>
+                        <li>Vitamins: Maintain a balanced intake of vitamins (green leafy vegetables, citrus fruits).</li>
+                        <li>Calories: Balance your calorie intake based on your activity level.</li>
+                    </ul>`;
+                exercises = `
+                    <ul>
+                        <li>Cardio (30 min): Maintain cardiovascular health with moderate-intensity exercises.</li>
+                        <li>Strength Training (30 min): Maintain muscle mass with moderate weight lifting.</li>
+                    </ul>`;
+            } else {
+                suggestedPlan = 'You may benefit from a weight loss plan, focusing on calorie deficit and controlling protein intake.';
+                meals = `
+                    <ul>
+                        <li>Protein: Focus on lean protein to control calorie intake (chicken, fish, tofu).</li>
+                        <li>Fiber: Increase fiber intake to feel fuller (leafy greens, beans, vegetables).</li>
+                        <li>Vitamins: Ensure you are consuming enough vitamins without excess calories (low-calorie vegetables and fruits).</li>
+                        <li>Calories: Focus on reducing calorie intake by choosing lower-calorie options.</li>
+                    </ul>`;
+                exercises = `
+                    <ul>
+                        <li>Cardio (45 min): Engage in aerobic exercises (running, cycling, swimming) to burn calories.</li>
+                        <li>Strength Training (30 min): Focus on strength training to preserve muscle while losing fat.</li>
+                    </ul>`;
+            }
+
+            $('#dietDetails').show();
+            $('#mealPlan').html(`<strong>Suggested Meals:</strong><br>${meals}`);
+            $('#exercisePlan').html(`<strong>Suggested Exercises:</strong><br>${exercises}`);
+        }
+    });
+    </script>
+
+<!-- Hide Header on Scroll Down, Show on Scroll Up -->
+
+<script>
+    // Toggle Menu on Mobile
+    const toggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    toggle.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+    });
+
+    // Hide Header on Scroll Down, Show on Scroll Up
+    let lastScrollTop = 0;
+    const header = document.querySelector("header");
+
+    window.addEventListener("scroll", function () {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop) {
+            // Scroll down
+            header.style.top = "-100px";
+        } else {
+            // Scroll up
+            header.style.top = "0";
+        }
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+</script>
+
+</body>
+</html>

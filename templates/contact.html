@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy Diet Plans - Contact</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background-image: url('static/Screenshot 2025-03-23 220744.png'); /* Update the path to your image */
+    background-size: cover; /* Ensures the image covers the whole background */
+    background-position: center center; /* Centers the background image */
+    background-attachment: fixed; /* Makes the background fixed during scrolling */
+    color: #2c3e50;
+    line-height: 1.6;
+    padding: 20px;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+        /* Header Styles */
+        header {
+            background-color: rgba(122, 67, 177, 0.8);
+            padding: 20px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform-style: preserve-3d; /* Maintain 3D effect on hover */
+            margin-top: 0;
+            width: 100vw;              /* 👈 Add this line */
+            margin-left: -20px;        /* 👈 Adjust for body padding */
+            border-bottom: 2px solid white; /* 👈 Add this line */
+        }
+
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        header nav ul li {
+            padding: 8px 15px;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            background-color: #e74c3c;  /* Red hover effect */
+            transform: scale(1.1) translateY(-5px); /* 3D hover effect */
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Contact Section Styles */
+        .contact-info {
+            margin-top: 40px;
+            text-align: center;
+            transform: rotateX(0deg);
+            transition: transform 0.5s ease;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            color: #3498db;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-card {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        .contact-card:hover {
+            transform: rotateY(10deg) scale(1.05); /* 3D rotation effect */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-card button {
+            background-color: #2ecc71; /* Green button for action */
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-card button:hover {
+            transform: translateY(-4px); /* 3D push effect */
+            background-color: #27ae60;
+        }
+
+        /* Section Styles */
+        .website-info {
+            margin-top: 40px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .website-info h3 {
+            font-size: 2rem;
+            color: #3498db;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .website-info p, .website-info ul {
+            font-size: 1.1rem;
+            color: #7f8c8d; /* Light gray for body text */
+        }
+
+        .website-info ul {
+            margin-top: 15px;
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .website-info ul li {
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+
+        .website-info ul li a {
+            color: #3498db; /* Blue links */
+            text-decoration: none;
+        }
+
+        .website-info ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px 0;
+            background-color: #2c3e50; /* Dark footer for contrast */
+            color: #fff;
+            font-size: 1rem;
+        }
+
+/* adjust properly on any screen size (mobile, tablet, laptop, desktop) */ 
+/* Medium Devices (Tablets, 768px and up) */
+@media (max-width: 992px) {
+    header nav ul {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    header nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .contact-card, .website-info {
+        padding: 20px;
+    }
+
+    .logo h1 {
+        font-size: 2rem;
+    }
+
+    header nav ul li a {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+}
+/* Small Devices (Phones, 600px and below) */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    header {
+        padding: 10px 20px;
+        margin-left: -10px;
+    }
+
+    .logo h1 {
+        font-size: 1.5rem;
+        text-align: center;
+        width: 100%;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+        width: 100%;
+    }
+
+    header nav ul li a {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .contact-card, .website-info {
+        margin-top: 20px;
+        padding: 15px;
+        font-size: 1rem;
+    }
+
+    .website-info h3 {
+        font-size: 1.5rem;
+    }
+
+    .contact-info h2 {
+        font-size: 2rem;
+    }
+
+    .contact-card button {
+        width: 100%;
+    }
+
+    footer {
+        font-size: 0.9rem;
+        padding: 10px 0;
+    }
+}
+
+/* Hamburger Button Style */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+}
+
+/* Responsive Navigation */
+@media (max-width: 992px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    header nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(122, 67, 177, 0.95);
+        margin-top: 10px;
+    }
+
+    #nav-links.show {
+        display: flex;
+    }
+
+    #nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    #nav-links li a {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+    }
+}
+
+/* Medium Screens: Resize fonts better on smaller laptops/tablets */
+@media (max-width: 992px) {
+    .logo h1 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    header nav ul li a {
+        font-size: 0.95rem;
+        padding: 6px 12px;
+    }
+
+    .menu-toggle {
+        font-size: 1.8rem;
+    }
+
+    body {
+        font-size: 0.95rem;
+    }
+}
+
+/* Slightly smaller text for tighter split screens */
+@media (max-width: 992px) {
+    .logo h1 {
+        font-size: 1.6rem;
+    }
+
+    header nav ul li a {
+        font-size: 0.9rem;
+    }
+
+    body {
+        font-size: 0.9rem;
+    }
+}
+
+/* Scroll hide/show animation */
+header {
+    transition: top 0.3s;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="{{ url_for('home') }}" style="text-decoration: none;">
+                    <h1>Healthy Diet Plans</h1>
+                </a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+            <ul id="nav-links">
+                <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+                <li><a href="{{ url_for('bmi_calculator') }}">BMI Calculator</a></li>
+                <li><a href="{{ url_for('calorie_calculator') }}">Calorie Calculator</a></li>
+                <li><a href="{{ url_for('diet_plan') }}">Diet Plan</a></li>
+                <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
+                <li><a href="{{ url_for('blog') }}">Blog</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+
+    <section class="contact-info">
+        <h2>Contact Information</h2>
+        <div class="contact-card">
+            <p>Email: contact@healthydietplans.com</p>
+            <p>Phone: (123) 456-7890</p>
+            <p>Address: 123 Health St, Wellness City</p>
+            <button>Get in Touch</button>
+        </div>
+    </section>
+
+    <!-- Website Information Section -->
+    <section class="website-info">
+        <h3>About Healthy Diet Plans</h3>
+        <p>Healthy Diet Plans is a trusted online platform dedicated to helping individuals lead healthier lives through well-balanced, nutritious meal plans. We provide expertly designed meal suggestions tailored to various dietary needs, from weight management to muscle building and general wellness. Our goal is to make healthy eating accessible and enjoyable for everyone, regardless of their lifestyle or dietary preferences.</p>
+        <p>Join us in our mission to promote wellness through nutritious choices, and feel free to reach out to us if you have any questions or need assistance. Together, we can help you achieve your health and wellness goals!</p>
+    </section>
+
+    <!-- Website Mission -->
+    <section class="website-info">
+        <h3>Our Mission</h3>
+        <p>At Healthy Diet Plans, our mission is to empower individuals to make healthier food choices and lead a balanced life. We believe that proper nutrition is key to achieving both physical and mental well-being. Our expert-curated meal plans are designed to help you achieve your health goals, whether you're trying to lose weight, gain muscle, or simply eat better.</p>
+        <p>We are committed to providing you with practical, affordable, and sustainable meal plans that fit into your unique lifestyle.</p>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="website-info">
+        <h3>Why Choose Us?</h3>
+        <ul>
+            <li><strong>Expert-Designed Plans:</strong> Our meal plans are created by certified nutritionists and chefs to ensure they're both healthy and delicious.</li>
+            <li><strong>Customizable Options:</strong> We offer a range of plans tailored to your specific dietary needs, whether you have food allergies, follow a particular diet (e.g., Keto, Vegan), or need help managing a medical condition.</li>
+            <li><strong>Affordable and Accessible:</strong> We make healthy eating affordable for everyone. Our plans include budget-friendly recipes that don't compromise on quality.</li>
+            <li><strong>Supportive Community:</strong> Join a supportive community of like-minded individuals who share tips, advice, and motivation on their health journey.</li>
+        </ul>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="website-info">
+        <h3>Check Out Our Blog</h3>
+        <p>We regularly publish articles with tips on healthy eating, fitness, and wellness. Here's a glimpse of some of our recent blog posts:</p>
+        <ul>
+            <li><a href="blog1.html">10 Easy and Nutritious Breakfast Ideas</a></li>
+            <li><a href="blog2.html">How to Stay on Track with Your Diet During Holidays</a></li>
+            <li><a href="blog3.html">The Best Foods to Boost Your Immune System</a></li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Healthy Diet Plans | All rights reserved.</p>
+    </footer>
+
+
+    <!-- Hide Header on Scroll Down, Show on Scroll Up -->
+
+    <script>
+        // Toggle Menu on Mobile
+        const toggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+    
+        toggle.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+    
+        // Hide Header on Scroll Down, Show on Scroll Up
+        let lastScrollTop = 0;
+        const header = document.querySelector("header");
+    
+        window.addEventListener("scroll", function () {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                // Scroll down
+                header.style.top = "-100px";
+            } else {
+                // Scroll up
+                header.style.top = "0";
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,799 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>4Diet Plan</title> 
+    <style> 
+        /* General Reset */ 
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Arial', sans-serif; 
+        } 
+ 
+        body { 
+            background-image: url('static/Screenshot 2025-03-23 220744.png'); /* Update the path to 
+your image */ 
+    background-size: cover; /* Ensures the image covers the whole background */ 
+    background-position: center center; /* Centers the background image */ 
+    background-attachment: fixed; /* Makes the background fixed during scrolling */ 
+    color: #2c3e50; 
+    line-height: 1.6; 
+    padding: 20px; 
+    padding-top: 0; 
+    margin-top: 0; 
+} 
+ 
+         /* Header Styles */ 
+         header { 
+            background-color: rgba(122, 67, 177, 0.8); 
+            padding: 8.5px 40px; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+            transform-style: preserve-3d; /* Maintain 3D effect on hover */ 
+            margin-top: 0; 
+            width: 100vw;              /*      Add this line */ 
+            margin-left: -20px;        /*      Adjust for body padding */ 
+            border-bottom: 2px solid white; /*      Add this line */ 
+        } 
+ 
+        header nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        } 
+ 
+        .logo h1 { 
+            font-size: 2.5rem; 
+            font-weight: bold; 
+            color: #fff; 
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); 
+        } 
+ 
+        header nav ul { 
+            list-style: none; 
+            display: flex; 
+            gap: 30px; 
+        } 
+ 
+        header nav ul li { 
+            padding: 8px 15px; 
+        } 
+ 
+        header nav ul li a { 
+            text-decoration: none; 
+            color: #fff; 
+            font-size: 1.1rem; 
+            padding: 10px 20px; 
+            border-radius: 8px; 
+            transition: all 0.3s ease; 
+        } 
+ 
+        header nav ul li a:hover { 
+            background-color: #e74c3c;  /* Red hover effect */ 
+            transform: scale(1.1) translateY(-5px); /* 3D hover effect */ 
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2); 
+        } 
+ 
+        /* Main Section */ 
+        .container { 
+            max-width: 900px; 
+            margin: 40px auto; 
+            padding: 20px; 
+            background-color: #fff; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+        } 
+ 
+        h1 { 
+            font-size: 2rem; 
+            color: #3498db; 
+            text-align: center; 
+            margin-bottom: 20px; 
+        } 
+ 
+        label { 
+            font-size: 1.1rem; 
+            color: #7f8c8d; 
+            margin-top: 15px; 
+            display: block; 
+        } 
+ 
+        input, select { 
+            width: 100%; 
+            padding: 10px; 
+            margin: 8px 0; 
+            border: 1px solid #ddd; 
+            border-radius: 8px; 
+            font-size: 1rem; 
+        } 
+ 
+        button { 
+            background-color: #2ecc71; /* Green button for action */ 
+            color: white; 
+            padding: 12px 25px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 1rem; 
+            transition: background-color 0.3s ease, transform 0.3s ease; 
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); 
+            margin-top: 15px; 
+        } 
+ 
+        button:hover { 
+            transform: translateY(-4px); /* 3D push effect */ 
+            background-color: #27ae60; 
+        } 
+ 
+        /* Calorie Status */ 
+        #calorie-status { 
+            margin-top: 20px; 
+            text-align: center; 
+        } 
+ 
+        .calories { 
+            font-size: 1.2rem; 
+            margin-top: 10px; 
+        } 
+ 
+        .low { 
+            color: #f39c12; /* Yellow */ 
+        } 
+ 
+        .perfect { 
+            color: #2ecc71; /* Green */ 
+        } 
+ 
+        .exceeded { 
+            color: #e74c3c; /* Red */ 
+        } 
+ 
+        /* Error Message */ 
+        #error-message { 
+            color: #e74c3c; 
+            font-size: 1.1rem; 
+            margin-top: 15px; 
+            text-align: center; 
+            display: none; 
+        } 
+ 
+        /* Food List */ 
+        #food-list { 
+            list-style-type: none; 
+            padding: 0; 
+            margin-top: 20px; 
+        } 
+ 
+        .food-list-item { 
+            background-color: #ecf0f1; 
+            padding: 10px; 
+            margin-bottom: 10px; 
+            border-radius: 8px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        } 
+ 
+        .food-list-item button { 
+            background-color: #e74c3c; 
+            color: white; 
+            padding: 5px 10px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+        } 
+ 
+        .food-list-item button:hover { 
+            background-color: #c0392b; 
+        } 
+ 
+        /* Healthy Replacement Suggestions */ 
+        #healthy-replacement { 
+            margin-top: 20px; 
+            text-align: center; 
+            display: none; 
+        } 
+ 
+        #replacement-food-list button { 
+            background-color: #3498db; 
+            color: white; 
+            padding: 8px 20px; 
+            margin: 5px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            transition: background-color 0.3s ease; 
+        } 
+ 
+        #replacement-food-list button:hover { 
+            background-color: #2980b9; 
+        } 
+ 
+        /* Footer Styles */ 
+        footer { 
+            text-align: center; 
+            margin-top: 40px; 
+            padding: 20px 0; 
+            background-color: #2c3e50; 
+            color: #fff; 
+            font-size: 1rem; 
+        } 
+/* adjust properly on any screen size (mobile, tablet, laptop, desktop) */ 
+/* Medium Devices (Tablets, 768px and up) */
+@media (max-width: 992px) {
+    header nav ul {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    header nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .contact-card, .website-info {
+        padding: 20px;
+    }
+
+    .logo h1 {
+        font-size: 2rem;
+    }
+
+    header nav ul li a {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+}
+/* Small Devices (Phones, 600px and below) */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    header {
+        padding: 10px 20px;
+        margin-left: -10px;
+    }
+
+    .logo h1 {
+        font-size: 1.5rem;
+        text-align: center;
+        width: 100%;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+        width: 100%;
+    }
+
+    header nav ul li a {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .contact-card, .website-info {
+        margin-top: 20px;
+        padding: 15px;
+        font-size: 1rem;
+    }
+
+    .website-info h3 {
+        font-size: 1.5rem;
+    }
+
+    .contact-info h2 {
+        font-size: 2rem;
+    }
+
+    .contact-card button {
+        width: 100%;
+    }
+
+    footer {
+        font-size: 0.9rem;
+        padding: 10px 0;
+    }
+}
+
+/* Hamburger Button Style */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+}
+
+/* Responsive Navigation */
+@media (max-width: 992px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    header nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(122, 67, 177, 0.95);
+        margin-top: 10px;
+    }
+
+    #nav-links.show {
+        display: flex;
+    }
+
+    #nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    #nav-links li a {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+    }
+}
+
+/* Medium Screens: Resize fonts better on smaller laptops/tablets */
+@media (max-width: 992px) {
+    .logo h1 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    header nav ul li a {
+        font-size: 0.95rem;
+        padding: 6px 12px;
+    }
+
+    .menu-toggle {
+        font-size: 1.8rem;
+    }
+
+    body {
+        font-size: 0.95rem;
+    }
+}
+
+/* Slightly smaller text for tighter split screens */
+@media (max-width: 992px) {
+    .logo h1 {
+        font-size: 1.6rem;
+    }
+
+    header nav ul li a {
+        font-size: 0.9rem;
+    }
+
+    body {
+        font-size: 0.9rem;
+    }
+}
+
+/* Scroll hide/show animation */
+header {
+    transition: top 0.3s;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="{{ url_for('home') }}" style="text-decoration: none;">
+                    <h1>Healthy Diet Plans</h1>
+                </a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+            <ul id="nav-links">
+                <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+                <li><a href="{{ url_for('bmi_calculator') }}">BMI Calculator</a></li>
+                <li><a href="{{ url_for('calorie_calculator') }}">Calorie Calculator</a></li>
+                <li><a href="{{ url_for('diet_plan') }}">Diet Plan</a></li>
+                <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
+                <li><a href="{{ url_for('blog') }}">Blog</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+ 
+    <div class="container"> 
+        <h1>Track Your Calories and Choose Foods</h1> 
+     
+        <label for="target-calories">Enter your daily target calories:</label> 
+        <input type="number" id="target-calories" placeholder="e.g., 2000" required> 
+     
+        <label for="food-search">Search for a food item:</label> 
+        <input type="text" id="food-search" placeholder="Search food..." 
+oninput="filterFoodOptions()"> 
+         
+        <label for="food-selection">Select Food Item:</label> 
+        <select id="food-selection"> 
+            <option value="" disabled selected>Select a food</option> 
+        </select> 
+        <button type="button" onclick="addFood()">Add Food</button> 
+     
+        <div id="selected-food-list"> 
+            <h3>Selected Foods:</h3> 
+            <ul id="food-list"> 
+                <!-- Food items will appear here --> 
+            </ul> 
+        </div> 
+     
+        <div id="calorie-status" class="result" style="display: none;"> 
+            <p>Total Calories: <span id="total-calories">0</span> kcal</p> 
+            <p class="calories" id="calorie-feedback">Perfect</p> 
+        </div> 
+     
+        <div id="healthy-replacement"> 
+            <h3>Healthy Replacement Suggestions:</h3> 
+            <div id="replacement-food-list"></div> 
+        </div> 
+     
+        <div id="error-message" class="error" style="display: none;"></div> 
+    </div> 
+ 
+    <footer> 
+        <p>&copy; 2025 Healthy Diet Plans | All Rights Reserved</p> 
+    </footer> 
+ 
+    <script> 
+        let totalCalories = 0; 
+        const foodList = document.getElementById('food-list'); 
+        const targetCaloriesInput = document.getElementById('target-calories'); 
+        const calorieFeedback = document.getElementById('calorie-feedback'); 
+        const calorieStatus = document.getElementById('calorie-status'); 
+        const errorMessage = document.getElementById('error-message'); 
+        const foodSelection = document.getElementById('food-selection'); 
+        const healthyReplacement = document.getElementById('healthy-replacement'); 
+        const replacementFoodList = document.getElementById('replacement-food-list'); 
+        const foodSearchInput = document.getElementById('food-search'); 
+     
+        const healthyFoods = [ 
+  {name: "Poha", calories: 150, servingSize: "200g"}, 
+  {name: "Sabudana Khichdi", calories: 200, servingSize: "200g"}, 
+  {name: "Pithla Bhakri", calories: 250, servingSize: "200g"}, 
+  {name: "Bhendi Stir Fry", calories: 120, servingSize: "200g"}, 
+  {name: "Methi Thepla", calories: 250, servingSize: "1 piece (100g)"}, 
+  {name: "Chana Masala", calories: 220, servingSize: "1 cup (200g)"}, 
+  {name: "Methi Paratha", calories: 250, servingSize: "1 piece (100g)"}, 
+  {name: "Kothimbir Vadi", calories: 150, servingSize: "2 pieces (100g)"}, 
+  {name: "Tandul Bhakri", calories: 150, servingSize: "1 piece (100g)"}, 
+  {name: "Rawa Upma", calories: 200, servingSize: "1 bowl (200g)"}, 
+  {name: "Dal", calories: 200, servingSize: "1 cup (200g)"}, 
+  {name: "Chapati", calories: 70, servingSize: "1 piece (50g)"}, 
+  {name: "Chaas", calories: 100, servingSize: "1 cup (200ml)"}, 
+  {name: "Khandvi", calories: 180, servingSize: "2 pieces (100g)"}, 
+  {name: "Zunka Bhakri", calories: 220, servingSize: "1 serving (200g)"}, 
+  {name: "Sundal", calories: 150, servingSize: "1 bowl (200g)"}, 
+  {name: "Veg Kolhapuri", calories: 250, servingSize: "1 cup (200g)"}, 
+  {name: "Poha with Peanuts", calories: 180, servingSize: "200g"}, 
+  {name: "Steamed Thepla", calories: 150, servingSize: "1 piece (100g)"}, 
+  {name: "Dhokla", calories: 120, servingSize: "2 pieces (100g)"}, 
+  {name: "Vegetable Khichdi", calories: 250, servingSize: "1 bowl (200g)"}, 
+  {name: "Kachori", calories: 250, servingSize: "2 pieces (150g)"}, 
+  {name: "Mango Salad", calories: 120, servingSize: "1 cup (150g)"}, 
+  {name: "Cabbage Sabzi", calories: 130, servingSize: "1 cup (200g)"}, 
+  {name: "Bajra Bhakri", calories: 220, servingSize: "1 piece (100g)"}, 
+  {name: "Vegan Biryani", calories: 300, servingSize: "1 plate (250g)"}, 
+  {name: "Raita", calories: 100, servingSize: "1 cup (150g)"}, 
+  {name: "Bhel Puri", calories: 200, servingSize: "1 plate (200g)"}, 
+  {name: "Sambhar", calories: 150, servingSize: "1 cup (200g)"}, 
+  {name: "Soya Chunks Curry", calories: 250, servingSize: "1 cup (200g)"}, 
+  {name: "Aloo Gobi", calories: 180, servingSize: "1 cup (200g)"}, 
+  {name: "Cucumber Salad", calories: 50, servingSize: "1 bowl (100g)"}, 
+  {name: "Pomegranate Salad", calories: 150, servingSize: "1 cup (150g)"}, 
+  {name: "Mushroom Curry", calories: 200, servingSize: "1 cup (200g)"}, 
+  {name: "Lemon Rice", calories: 180, servingSize: "1 bowl (200g)"}, 
+  {name: "Carrot Halwa", calories: 180, servingSize: "1 bowl (200g)"}, 
+  {name: "Mixed Vegetable Soup", calories: 150, servingSize: "1 bowl (200ml)"}, 
+  {name: "Steamed Modak", calories: 150, servingSize: "1 piece (50g)"}, 
+  {name: "Tawa Veggie Roll", calories: 250, servingSize: "1 roll (150g)"}, 
+  {name: "Mango Lassi", calories: 200, servingSize: "1 glass (250ml)"}, 
+  {name: "Avocado Toast", calories: 200, servingSize: "1 slice (100g)"}, 
+  {name: "Gajar Paratha", calories: 250, servingSize: "1 piece (100g)"}, 
+  {name: "Bamboo Rice Pudding", calories: 180, servingSize: "1 bowl (200g)"}, 
+  {name: "Vegetable Pulao", calories: 300, servingSize: "1 plate (250g)"}, 
+  {name: "Pumpkin Soup", calories: 120, servingSize: "1 bowl (200ml)"}, 
+  {name: "Sweet Potato Sabzi", calories: 180, servingSize: "1 cup (200g)"}, 
+  {name: "Papad", calories: 50, servingSize: "1 piece (20g)"}, 
+  {name: "Moringa Soup", calories: 120, servingSize: "1 bowl (200ml)"}, 
+  {name: "Bajra Khichdi", calories: 200, servingSize: "1 bowl (200g)"}, 
+  {name: "Alu Methi", calories: 180, servingSize: "1 cup (200g)"}, 
+  {name: "Spinach Soup", calories: 150, servingSize: "1 bowl (200ml)"}, 
+  {name: "Lentil Dosa", calories: 220, servingSize: "1 dosa (150g)"}, 
+  {name: "Veg Toast Sandwich", calories: 250, servingSize: "1 sandwich (150g)"}, 
+  {name: "Brown Rice Pulao", calories: 230, servingSize: "1 plate (200g)"}, 
+  {name: "Pineapple Salad", calories: 120, servingSize: "1 cup (150g)"}, 
+  {name: "Pumpkin Stir Fry", calories: 150, servingSize: "1 cup (200g)"}, 
+  {name: "Baked Falafel", calories: 200, servingSize: "4 pieces (100g)"}, 
+  {name: "Chana Sundal", calories: 150, servingSize: "1 bowl (200g)"}, 
+  {name: "Cucumber Slices with Yogurt Dip", calories: 120, servingSize: "1 bowl (150g)"}, 
+  {name: "Boiled Corn", calories: 150, servingSize: "1 cob (150g)"}, 
+  {name: "Tofu Bhurji", calories: 200, servingSize: "1 cup (200g)"}, 
+  {name: "Jowar Bhakri", calories: 200, servingSize: "1 piece (100g)"}, 
+  {name: "Kachauli", calories: 160, servingSize: "1 piece (80g)"}, 
+  {name: "Raw Mango Salad", calories: 150, servingSize: "1 cup (150g)"}, 
+  {name: "Chickpea Soup", calories: 180, servingSize: "1 bowl (200g)"}, 
+  {name: "Mung Dal Chilla", calories: 150, servingSize: "1 chilla (100g)"}, 
+  {name: "Vegan Tempeh Stir-fry", calories: 250, servingSize: "1 cup (200g)"}, 
+  {name: "Stuffed Paratha", calories: 250, servingSize: "1 piece (100g)"}, 
+  {name: "Kedgeree", calories: 300, servingSize: "1 plate (250g)"}, 
+  {name: "Rajma", calories: 250, servingSize: "1 cup (200g)"}, 
+  {name: "Cabbage Rolls", calories: 150, servingSize: "1 roll (100g)"}, 
+  {name: "Sweet Potato Stew", calories: 200, servingSize: "1 bowl (200g)"}, 
+  {name: "Vegetable Stew", calories: 180, servingSize: "1 bowl (200g)"}, 
+  {name: "Baked Vegetable Chips", calories: 150, servingSize: "1 serving (100g)"}, 
+  {name: "Chana Tikki", calories: 150, servingSize: "2 pieces (100g)"}, 
+  {name: "Fruit Smoothie Bowl", calories: 250, servingSize: "1 bowl (250g)"}, 
+  {name: "Masala Khichdi", calories: 220, servingSize: "1 bowl (200g)"}, 
+  {name: "Sprouted Moong Salad", calories: 180, servingSize: "1 cup (150g)"}, 
+  {name: "Methi Thepla Wrap", calories: 250, servingSize: "1 wrap (150g)"}, 
+  {name: "Rajgira Paratha", calories: 220, servingSize: "1 piece (100g)"}, 
+  {name: "Zucchini Stir Fry", calories: 180, servingSize: "1 cup (200g)"}, 
+  {name: "Boiled Sweet Potato", calories: 160, servingSize: "1 medium (150g)"}, 
+  {name: "Kale and Quinoa Salad", calories: 200, servingSize: "1 cup (150g)"}, 
+  {name: "Grilled Tofu", calories: 200, servingSize: "1 serving (150g)"}, 
+  {name: "Moong Dal Soup", calories: 150, servingSize: "1 bowl (200ml)"}, 
+  {name: "Vegan Quinoa Salad", calories: 220, servingSize: "1 cup (150g)"}, 
+  {name: "Coconut Water", calories: 45, servingSize: "1 cup (200ml)"}, 
+  {name: "Ragi Dosa", calories: 180, servingSize: "1 dosa (150g)"}, 
+  {name: "Raw Mango Chutney", calories: 120, servingSize: "2 tbsp (30g)"}, 
+  {name: "Lemon and Herb Quinoa", calories: 200, servingSize: "1 cup (150g)"}, 
+  {name: "Pumpkin Fritters", calories: 150, servingSize: "2 pieces (100g)"}, 
+  {name: "Beetroot Salad", calories: 120, servingSize: "1 cup (150g)"}, 
+  {name: "Aloo Bhindi", calories: 200, servingSize: "1 cup (200g)"}, 
+  {name: "Baingan Bharta", calories: 180, servingSize: "1 cup (200g)"}, 
+  {name: "Papaya Salad", calories: 150, servingSize: "1 cup (150g)"} 
+ 
+]; 
+ 
+        const unhealthyFoods = [ 
+  {name: "Burger", calories: 500, servingSize: "1 burger (200g)"}, 
+  {name: "French Fries", calories: 300, servingSize: "1 serving (150g)"}, 
+  {name: "Pizza", calories: 300, servingSize: "1 slice (100g)"}, 
+  {name: "Fried Chicken", calories: 350, servingSize: "2 pieces (150g)"}, 
+  {name: "Chocolate Cake", calories: 400, servingSize: "1 slice (100g)"}, 
+  {name: "Ice Cream", calories: 250, servingSize: "1 scoop (100g)"}, 
+  {name: "Donut", calories: 300, servingSize: "1 donut (80g)"}, 
+  {name: "Soda", calories: 150, servingSize: "1 can (330ml)"}, 
+  {name: "Chocolates", calories: 220, servingSize: "3 pieces (50g)"}, 
+  {name: "Hot Dog", calories: 400, servingSize: "1 hot dog (150g)"}, 
+  {name: "Pasta Alfredo", calories: 500, servingSize: "1 plate (200g)"}, 
+  {name: "Fried Fish", calories: 450, servingSize: "1 serving (200g)"}, 
+  {name: "Fried Rice", calories: 400, servingSize: "1 plate (200g)"}, 
+  {name: "Nachos", calories: 350, servingSize: "1 serving (150g)"}, 
+  {name: "Chicken Wings", calories: 600, servingSize: "5 wings (250g)"}, 
+  {name: "Cheese Sticks", calories: 400, servingSize: "4 pieces (150g)"}, 
+  {name: "Milkshake", calories: 350, servingSize: "1 glass (250ml)"}, 
+  {name: "Candy", calories: 200, servingSize: "6 pieces (50g)"}, 
+  {name: "Cinnamon Rolls", calories: 450, servingSize: "1 roll (100g)"}, 
+  {name: "Potato Chips", calories: 150, servingSize: "1 small bag (50g)"}, 
+  {name: "Cheeseburger", calories: 600, servingSize: "1 burger (250g)"}, 
+  {name: "Chocolate Bar", calories: 250, servingSize: "1 bar (40g)"}, 
+  {name: "Ice Cream Sundae", calories: 500, servingSize: "1 serving (200g)"}, 
+  {name: "Pancakes with Syrup", calories: 350, servingSize: "2 pancakes (150g)"}, 
+  {name: "Lasagna", calories: 450, servingSize: "1 serving (250g)"}, 
+  {name: "Fried Onion Rings", calories: 400, servingSize: "6 pieces (100g)"}, 
+  {name: "Deep-Fried Tacos", calories: 500, servingSize: "2 tacos (200g)"}, 
+  {name: "Corn Dog", calories: 400, servingSize: "1 corn dog (150g)"}, 
+  {name: "Churros", calories: 350, servingSize: "3 pieces (150g)"}, 
+  {name: "Bagel with Cream Cheese", calories: 400, servingSize: "1 bagel (150g)"}, 
+  {name: "Beer", calories: 150, servingSize: "1 can (330ml)"}, 
+  {name: "Cheese Fries", calories: 400, servingSize: "1 serving (150g)"}, 
+  {name: "Croissant", calories: 250, servingSize: "1 croissant (60g)"}, 
+  {name: "Cupcake", calories: 350, servingSize: "1 cupcake (100g)"}, 
+  {name: "Fried Mozzarella Sticks", calories: 500, servingSize: "4 sticks (150g)"}, 
+  {name: "Tiramisu", calories: 450, servingSize: "1 serving (100g)"}, 
+  {name: "Loaded Potato Skins", calories: 500, servingSize: "2 skins (150g)"}, 
+  {name: "Fried Dough", calories: 450, servingSize: "1 serving (150g)"}, 
+  {name: "Sausage Roll", calories: 400, servingSize: "1 roll (150g)"}, 
+  {name: "Cheese Pizza", calories: 300, servingSize: "1 slice (100g)"}, 
+  {name: "Popcorn with Butter", calories: 300, servingSize: "1 serving (100g)"}, 
+  {name: "Butter Chicken", calories: 550, servingSize: "1 plate (200g)"}, 
+  {name: "Fried Eggroll", calories: 400, servingSize: "2 pieces (150g)"}, 
+  {name: "Beef Steak with Butter", calories: 600, servingSize: "1 steak (250g)"}, 
+  {name: "Fried Cheeseballs", calories: 450, servingSize: "4 balls (150g)"}, 
+  {name: "Mac and Cheese", calories: 500, servingSize: "1 plate (200g)"}, 
+  {name: "Sweet Potato Fries", calories: 300, servingSize: "1 serving (150g)"}, 
+  {name: "Spaghetti Bolognese", calories: 550, servingSize: "1 plate (200g)"}, 
+  {name: "Deep Fried Chicken Nuggets", calories: 400, servingSize: "6 pieces (150g)"}, 
+  {name: "Beef Burger with Fries", calories: 700, servingSize: "1 combo (400g)"}, 
+  {name: "Fried Pickles", calories: 250, servingSize: "1 serving (100g)"}, 
+  {name: "Chili Cheese Fries", calories: 500, servingSize: "1 serving (150g)"}, 
+  {name: "Beef Tacos", calories: 400, servingSize: "2 tacos (200g)"}, 
+  {name: "Fried Shrimp", calories: 450, servingSize: "1 serving (150g)"}, 
+  {name: "Sloppy Joes", calories: 500, servingSize: "1 sandwich (200g)"}, 
+  {name: "Buffalo Chicken Dip", calories: 550, servingSize: "1 serving (200g)"}, 
+  {name: "Fried Ravioli", calories: 400, servingSize: "6 pieces (150g)"}, 
+  {name: "BBQ Ribs", calories: 600, servingSize: "1 rack (250g)"}, 
+  {name: "Fried Zucchini Sticks", calories: 400, servingSize: "1 serving (150g)"}, 
+  {name: "Crispy Tofu Bites", calories: 350, servingSize: "1 serving (150g)"}, 
+  {name: "Pulled Pork Sandwich", calories: 500, servingSize: "1 sandwich (200g)"}, 
+  {name: "Cinnamon Sugar Pretzel", calories: 450, servingSize: "1 pretzel (150g)"}, 
+  {name: "Pork Belly", calories: 600, servingSize: "1 serving (200g)"}, 
+  {name: "Fried Calamari", calories: 500, servingSize: "1 serving (150g)"}, 
+  {name: "Fried Eggplant Parmesan", calories: 500, servingSize: "1 serving (200g)"}, 
+  {name: "Poutine", calories: 700, servingSize: "1 serving (300g)"}, 
+  {name: "Chocolate Fondue", calories: 600, servingSize: "1 serving (150g)"}, 
+  {name: "Maple Bacon Donut", calories: 400, servingSize: "1 donut (100g)"}, 
+  {name: "Grilled Cheese Sandwich", calories: 450, servingSize: "1 sandwich (200g)"}, 
+  {name: "Deep Fried Twinkies", calories: 500, servingSize: "2 Twinkies (150g)"}, 
+  {name: "Stuffed Crust Pizza", calories: 400, servingSize: "1 slice (100g)"}, 
+  {name: "Pork Schnitzel", calories: 600, servingSize: "1 serving (250g)"}, 
+  {name: "Mutton Korma", calories: 550, servingSize: "1 serving (200g)"}, 
+  {name: "Kebabs with Fries", calories: 600, servingSize: "1 serving (250g)"}, 
+  {name: "Fried Corn on the Cob", calories: 400, servingSize: "1 cob (200g)"}, 
+  {name: "Deep Fried Oreos", calories: 450, servingSize: "4 pieces (150g)"}, 
+  {name: "Garlic Bread with Cheese", calories: 400, servingSize: "1 slice (100g)"}, 
+  {name: "Ranch Dip with Chips", calories: 450, servingSize: "1 serving (150g)"}, 
+  {name: "Steak and Fries", calories: 700, servingSize: "1 serving (300g)"}, 
+  {name: "Beef Empanadas", calories: 450, servingSize: "2 empanadas (150g)"}, 
+  {name: "Fried Tortilla Chips with Guacamole", calories: 500, servingSize: "1 serving (150g)"}, 
+  {name: "Fried Samosas", calories: 400, servingSize: "3 samosas (150g)"}, 
+  {name: "Katsu Curry", calories: 600, servingSize: "1 serving (250g)"}, 
+  {name: "Fried Banana Fritters", calories: 450, servingSize: "1 serving (150g)"}, 
+  {name: "Fried Mochi", calories: 500, servingSize: "4 pieces (150g)"}, 
+  {name: "Toasted Marshmallows", calories: 300, servingSize: "1 serving (100g)"} 
+]; 
+ 
+        window.onload = function() { 
+            populateFoodOptions();  // This will populate the food options when the page loads 
+        }; 
+     
+        function populateFoodOptions() { 
+            foodSelection.innerHTML = "<option value='' disabled selected>Select a food</option>"; 
+     
+            const foods = [...healthyFoods, ...unhealthyFoods]; 
+            foods.forEach(food => { 
+                const option = document.createElement('option'); 
+                option.value = food.name; 
+                option.textContent = `${food.name} - ${food.calories} kcal`; 
+                foodSelection.appendChild(option); 
+            }); 
+        } 
+     
+        function filterFoodOptions() { 
+            const query = foodSearchInput.value.toLowerCase(); 
+            const filteredFoods = [...healthyFoods, ...unhealthyFoods].filter(food =>  
+                food.name.toLowerCase().includes(query) 
+            ); 
+     
+            foodSelection.innerHTML = "<option value='' disabled selected>Select a food</option>"; 
+     
+            filteredFoods.forEach(food => { 
+                const option = document.createElement('option'); 
+                option.value = food.name; 
+                option.textContent = `${food.name} - ${food.calories} kcal`; 
+                foodSelection.appendChild(option); 
+            }); 
+        } 
+     
+        function addFood() { 
+    const selectedFoodName = foodSelection.value; 
+    if (!selectedFoodName) { 
+        errorMessage.textContent = "Please select a food item."; 
+        errorMessage.style.display = 'block'; 
+        return; 
+    } 
+ 
+    const food = [...healthyFoods, ...unhealthyFoods].find(f => f.name === selectedFoodName); 
+    if (!food) return; 
+ 
+    totalCalories += food.calories; 
+ 
+    const listItem = document.createElement('li'); 
+    listItem.className = 'food-list-item'; 
+    listItem.innerHTML = `${food.name} - ${food.calories} kcal, Serving Size: ${food.servingSize} 
+    <button onclick="removeFood(${food.calories}, this)">Remove</button>`; 
+    foodList.appendChild(listItem); 
+ 
+    if (unhealthyFoods.some(f => f.name === selectedFoodName)) { 
+        suggestHealthyReplacement(food.calories); 
+    } else { 
+        healthyReplacement.style.display = 'none'; 
+    } 
+ 
+    updateCalorieStatus(); 
+    foodSelection.value = ''; 
+    foodSearchInput.value = ''; 
+    errorMessage.style.display = 'none'; 
+} 
+ 
+     
+        function removeFood(calories, button) { 
+            totalCalories -= calories; 
+            button.parentElement.remove(); 
+            updateCalorieStatus(); 
+        } 
+     
+        function updateCalorieStatus() { 
+            const targetCalories = parseInt(targetCaloriesInput.value) || 0; 
+            calorieStatus.style.display = 'block'; 
+            document.getElementById('total-calories').textContent = totalCalories; 
+     
+            if (totalCalories < targetCalories) { 
+                calorieFeedback.textContent = 'You are under your calorie target!'; 
+                calorieFeedback.className = 'calories low'; 
+            } else if (totalCalories === targetCalories) { 
+                calorieFeedback.textContent = 'You are right on track!'; 
+                calorieFeedback.className = 'calories perfect'; 
+            } else { 
+                calorieFeedback.textContent = 'You have exceeded your calorie target!'; 
+                calorieFeedback.className = 'calories exceeded'; 
+            } 
+        } 
+     
+        function suggestHealthyReplacement(calories) { 
+            healthyReplacement.style.display = 'block'; 
+            replacementFoodList.innerHTML = ''; 
+     
+            healthyFoods.forEach(healthyFood => { 
+                if (healthyFood.calories <= calories) { 
+                    const button = document.createElement('button'); 
+                    button.textContent = `${healthyFood.name} - ${healthyFood.calories} kcal`; 
+                    button.onclick = () => replaceFood(healthyFood, calories); 
+                    replacementFoodList.appendChild(button); 
+                } 
+            }); 
+        } 
+     
+        function replaceFood(healthyFood, originalCalories) { 
+            totalCalories -= originalCalories; 
+            totalCalories += healthyFood.calories; 
+            updateCalorieStatus(); 
+     
+            const listItem = document.createElement('li'); 
+            listItem.className = 'food-list-item'; 
+            listItem.innerHTML = `${healthyFood.name} - ${healthyFood.calories} kcal 
+            <button onclick="removeFood(${healthyFood.calories}, this)">Remove</button>`; 
+            foodList.appendChild(listItem); 
+     
+            healthyReplacement.style.display = 'none'; 
+        } 
+    </script> 
+ 
+ <!-- Hide Header on Scroll Down, Show on Scroll Up -->
+
+ <script>
+    // Toggle Menu on Mobile
+    const toggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    toggle.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+    });
+
+    // Hide Header on Scroll Down, Show on Scroll Up
+    let lastScrollTop = 0;
+    const header = document.querySelector("header");
+
+    window.addEventListener("scroll", function () {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop) {
+            // Scroll down
+            header.style.top = "-100px";
+        } else {
+            // Scroll up
+            header.style.top = "0";
+        }
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+</script>
+
+</body> 
+</html> 

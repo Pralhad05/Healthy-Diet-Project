@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seasonal Nutrition Plan - Mumbai</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f7;
+            color: #2c3e50;
+            line-height: 1.6;
+            padding: 20px;
+            perspective: 1000px;
+        }
+
+        header {
+            background-color: #3498db;
+            padding: 20px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        header nav ul li {
+            padding: 8px 15px;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            background-color: #e74c3c;
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .container h1, .container h2 {
+            color: #3498db;
+        }
+
+        .meal-plan {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .food-box, .grocery-list-box {
+            width: 45%;
+        }
+
+        .food-box div, .grocery-list-box div {
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .food-box div:hover, .grocery-list-box div:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #2ecc71;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #27ae60;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+ /* adjust properly on any screen size (mobile, tablet, laptop, desktop) */ 
+/* Medium Devices (Tablets, 768px and up) */
+@media (max-width: 992px) {
+    header nav ul {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    header nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .contact-card, .website-info {
+        padding: 20px;
+    }
+
+    .logo h1 {
+        font-size: 2rem;
+    }
+
+    header nav ul li a {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+}
+/* Small Devices (Phones, 600px and below) */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    header {
+        padding: 10px 20px;
+        margin-left: -10px;
+    }
+
+    .logo h1 {
+        font-size: 1.5rem;
+        text-align: center;
+        width: 100%;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+        width: 100%;
+    }
+
+    header nav ul li a {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .contact-card, .website-info {
+        margin-top: 20px;
+        padding: 15px;
+        font-size: 1rem;
+    }
+
+    .website-info h3 {
+        font-size: 1.5rem;
+    }
+
+    .contact-info h2 {
+        font-size: 2rem;
+    }
+
+    .contact-card button {
+        width: 100%;
+    }
+
+    footer {
+        font-size: 0.9rem;
+        padding: 10px 0;
+    }
+}
+
+/* Hamburger Button Style */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+}
+
+/* Responsive Navigation */
+@media (max-width: 992px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    header nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(122, 67, 177, 0.95);
+        margin-top: 10px;
+    }
+
+    #nav-links.show {
+        display: flex;
+    }
+
+    #nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    #nav-links li a {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+    }
+}
+
+/* Medium Screens: Resize fonts better on smaller laptops/tablets */
+@media (max-width: 992px) {
+    .logo h1 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    header nav ul li a {
+        font-size: 0.95rem;
+        padding: 6px 12px;
+    }
+
+    .menu-toggle {
+        font-size: 1.8rem;
+    }
+
+    body {
+        font-size: 0.95rem;
+    }
+}
+
+/* Slightly smaller text for tighter split screens */
+@media (max-width: 992px) {
+    .logo h1 {
+        font-size: 1.6rem;
+    }
+
+    header nav ul li a {
+        font-size: 0.9rem;
+    }
+
+    body {
+        font-size: 0.9rem;
+    }
+}
+
+/* Scroll hide/show animation */
+header {
+    transition: top 0.3s;
+}
+
+/* Video Background */ 
+.video-background { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    z-index: -1; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+} 
+ 
+.video-background video { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    object-position: center; 
+} 
+ 
+/* Overlay for better text readability */ 
+.video-background::before { 
+    content: ''; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0, 0, 0, 0.4); 
+    z-index: -1; 
+} 
+
+    </style>
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="{{ url_for('static', filename='7021887_Vegetables_Fruits_4096x2160.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="{{ url_for('home') }}" style="text-decoration: none;">
+                    <h1>Healthy Diet Plans</h1>
+                </a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+            <ul id="nav-links">
+                <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+                <li><a href="{{ url_for('bmi_calculator') }}">BMI Calculator</a></li>
+                <li><a href="{{ url_for('calorie_calculator') }}">Calorie Calculator</a></li>
+                <li><a href="{{ url_for('diet_plan') }}">Diet Plan</a></li>
+                <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
+                <li><a href="{{ url_for('blog') }}">Blog</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <div class="container">
+        <h1>Seasonal Nutrition Plan (Mumbai)</h1>
+        <label for="season">Select Season:</label>
+        <select id="season" onchange="showFoodList()">
+            <option value="summer">Summer</option>
+            <option value="monsoon">Monsoon</option>
+            <option value="winter">Winter</option>
+        </select>
+
+        <label for="foodSearch">Search Food:</label>
+        <input type="text" id="foodSearch" oninput="searchFood()" placeholder="Search for food...">
+
+        <label for="mealPlan">Select Food for Your Plan:</label>
+        <select id="mealPlan">
+            <option value="">--Select Food--</option>
+        </select>
+
+        <label for="mealTime">Select Meal Time:</label>
+        <select id="mealTime">
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+        </select>
+
+        <button onclick="addToMealPlan()">Add to Meal Plan</button>
+    </div>
+
+    <div class="container meal-plan">
+        <h2>Your Today's Meal Plan</h2>
+
+        <div class="food-box">
+            <h3>Food List</h3>
+            <div id="foodListSection"></div>
+        </div>
+
+        <div class="grocery-list-box">
+            <h3>Grocery List</h3>
+            <div id="groceryListSection"></div>
+            <button onclick="toggleGroceryList()">Show/Hide Grocery List</button>
+        </div>
+    </div>
+    
+    <script> 
+        const seasonalFoods = {
+            summer: [
+            { "name": "Mangoes", "ingredients": ["Mangoes"] },
+    { "name": "Watermelon", "ingredients": ["Watermelon"] },
+    { "name": "Muskmelon", "ingredients": ["Muskmelon"] },
+    { "name": "Pineapple", "ingredients": ["Pineapple"] },
+    { "name": "Lychee", "ingredients": ["Lychee"] },
+    { "name": "Papaya", "ingredients": ["Papaya"] },
+    { "name": "Apples", "ingredients": ["Apples"] },
+    { "name": "Grapes", "ingredients": ["Grapes"] },
+    { "name": "Bananas", "ingredients": ["Bananas"] },
+    { "name": "Coconut", "ingredients": ["Coconut"] },
+    { "name": "Cherries", "ingredients": ["Cherries"] },
+    { "name": "Pomegranate", "ingredients": ["Pomegranate"] },
+    { "name": "Strawberries", "ingredients": ["Strawberries"] },
+    { "name": "Kiwi", "ingredients": ["Kiwi"] },
+    { "name": "Guavas", "ingredients": ["Guavas"] },
+    { "name": "Oranges", "ingredients": ["Oranges"] },
+    { "name": "Sweet lime (Mosambi)", "ingredients": ["Sweet Lime"] },
+    { "name": "Plums", "ingredients": ["Plums"] },
+    { "name": "Amla", "ingredients": ["Amla"] },
+    { "name": "Apricots", "ingredients": ["Apricots"] },
+    { "name": "Fruit Chaat (Watermelon, Pineapple)", "ingredients": ["Watermelon", "Pineapple"] },
+    { "name": "Lemon Water", "ingredients": ["Lemon"] },
+    { "name": "Fruit Salad (Mango, Papaya)", "ingredients": ["Mango", "Papaya"] },
+    { "name": "Vegetable Raita", "ingredients": ["Vegetables", "Yogurt"] },
+    { "name": "Cold Quinoa Salad with Cucumber", "ingredients": ["Quinoa", "Cucumber"] },
+    { "name": "Veg and Paneer Wrap (Whole Wheat)", "ingredients": ["Whole Wheat", "Paneer", "Vegetables"] },
+    { "name": "Watermelon Smoothie", "ingredients": ["Watermelon"] },
+    { "name": "Rice with Cucumber Raita", "ingredients": ["Rice", "Cucumber", "Yogurt"] },
+    { "name": "Cold Vegetable Soup", "ingredients": ["Vegetables"] },
+    { "name": "Rajma Salad", "ingredients": ["Rajma", "Vegetables"] },
+    { "name": "Corn Chaat", "ingredients": ["Corn", "Spices"] },
+    { "name": "Sprouted Lentil Salad", "ingredients": ["Lentils", "Vegetables"] },
+    { "name": "Spinach Smoothie", "ingredients": ["Spinach"] },
+    { "name": "Millet Roti with Yogurt", "ingredients": ["Millet", "Yogurt"] },
+    { "name": "Cold Oatmeal with Chia Seeds", "ingredients": ["Oats", "Chia Seeds"] },
+    { "name": "Poha with Lemon", "ingredients": ["Poha", "Lemon"] },
+    { "name": "Fresh Coconut Water", "ingredients": ["Coconut"] },
+    { "name": "Mango Chutney", "ingredients": ["Mango", "Spices"] },
+    { "name": "Dosa with Mint Chutney", "ingredients": ["Rice", "Lentils", "Mint"] },
+    { "name": "Raw Mango Rice", "ingredients": ["Raw Mango", "Rice"] },
+    { "name": "Chilled Cucumber Soup", "ingredients": ["Cucumber", "Yogurt"] },
+    { "name": "Grilled Veggies with Lime Dressing", "ingredients": ["Vegetables", "Lime"] },
+    { "name": "Cucumber Sandwiches", "ingredients": ["Cucumber", "Whole Wheat"] },
+    { "name": "Curd-based Veggie Curry", "ingredients": ["Vegetables", "Curd"] },
+    { "name": "Pomegranate and Orange Salad", "ingredients": ["Pomegranate", "Orange"] },
+    { "name": "Veggie Wraps", "ingredients": ["Whole Wheat", "Vegetables"] },
+    { "name": "Chilled Fruit Smoothies", "ingredients": ["Fruits"] },
+    { "name": "Avocado Toast", "ingredients": ["Avocados", "Whole Wheat"] },
+    { "name": "Tofu Salad with Mixed Greens", "ingredients": ["Tofu", "Mixed Greens"] },
+    { "name": "Stir-fried Veggies with Brown Rice", "ingredients": ["Vegetables", "Brown Rice"] },
+    { "name": "Buttermilk (Chaas)", "ingredients": ["Yogurt", "Spices"] },
+    { "name": "Mixed Fruit Sorbet", "ingredients": ["Fruits"] },
+    { "name": "Baked Sweet Potato Fries", "ingredients": ["Sweet Potato"] },
+    { "name": "Cucumber Slices with Lime", "ingredients": ["Cucumber", "Lime"] },
+    { "name": "Avocado Salad", "ingredients": ["Avocados", "Vegetables"] },
+    { "name": "Moong Dal Salad", "ingredients": ["Moong Dal", "Vegetables"] },
+    { "name": "Chilled Quinoa Porridge", "ingredients": ["Quinoa", "Fruits"] },
+    { "name": "Raw Mango Curry", "ingredients": ["Raw Mango", "Spices"] },
+    { "name": "Methi Paratha (with Buttermilk)", "ingredients": ["Methi", "Whole Wheat", "Yogurt"] },
+    { "name": "Spinach and Mint Smoothie", "ingredients": ["Spinach", "Mint"] },
+    { "name": "Lemon-spiced Watermelon Salad", "ingredients": ["Watermelon", "Lemon"] },
+    { "name": "Masala Papad with Veggies", "ingredients": ["Papad", "Vegetables"] },
+    { "name": "Roasted Chickpeas", "ingredients": ["Chickpeas"] },
+    { "name": "Fruit Popsicles (Homemade)", "ingredients": ["Fruits"] },
+    { "name": "Pesarattu (with Mango Chutney)", "ingredients": ["Green Gram", "Mango"] },
+    { "name": "Tofu Curry with Vegetables", "ingredients": ["Tofu", "Vegetables", "Spices"] },
+    { "name": "Cucumber and Tomato Salad", "ingredients": ["Cucumber", "Tomato"] },
+    { "name": "Boiled Sweet Potatoes", "ingredients": ["Sweet Potato"] },
+    { "name": "Tomato Cucumber Chaat", "ingredients": ["Tomato", "Cucumber", "Spices"] },
+    { "name": "Raw Mango Dal", "ingredients": ["Raw Mango", "Dal"] },
+    { "name": "Paneer Tikka", "ingredients": ["Paneer", "Spices"] },
+    { "name": "Steamed Vegetables", "ingredients": ["Vegetables"] },
+    { "name": "Watermelon Gazpacho", "ingredients": ["Watermelon", "Vegetables"] },
+    { "name": "Green Juice with Mint and Cucumber", "ingredients": ["Mint", "Cucumber"] },
+    { "name": "Chilled Buttermilk Soup", "ingredients": ["Yogurt", "Spices"] },
+    { "name": "Avocado Smoothie", "ingredients": ["Avocados"] },
+    { "name": "Cucumber Raita with Garlic", "ingredients": ["Cucumber", "Yogurt", "Garlic"] },
+    { "name": "Fresh Mango Lassi", "ingredients": ["Mango", "Yogurt"] },
+    { "name": "Jowar Bhakri", "ingredients": ["Jowar"] },
+    { "name": "Sliced Fruits with Chili Powder", "ingredients": ["Fruits", "Chili Powder"] },
+    { "name": "Mango Panna (Raw Mango Drink)", "ingredients": ["Raw Mango", "Spices"] },
+    { "name": "Spinach Soup", "ingredients": ["Spinach", "Spices"] },
+    { "name": "Chia Seed Pudding with Fruits", "ingredients": ["Chia Seeds", "Fruits"] },
+    { "name": "Mango Curry", "ingredients": ["Mango", "Spices"] },
+    { "name": "Cabbage Salad", "ingredients": ["Cabbage", "Spices"] },
+    { "name": "Cauliflower and Peas Stir-fry", "ingredients": ["Cauliflower", "Peas", "Spices"] },
+    { "name": "Baked Kale Chips", "ingredients": ["Kale", "Olive Oil"] },
+    { "name": "Lemon Rice with Peanuts", "ingredients": ["Rice", "Lemon", "Peanuts"] },
+    { "name": "Aloo and Methi Stir-fry", "ingredients": ["Potato", "Methi"] },
+    { "name": "Veggie and Hummus Pita Pocket", "ingredients": ["Pita", "Hummus", "Vegetables"] },
+    { "name": "Rice Noodles with Veggies", "ingredients": ["Rice Noodles", "Vegetables"] },
+    { "name": "Cauliflower Rice", "ingredients": ["Cauliflower"] },
+    { "name": "Watermelon-Mint Smoothie", "ingredients": ["Watermelon", "Mint"] },
+    { "name": "Lentil Soup (with Lemon)", "ingredients": ["Lentils", "Lemon"] },
+    { "name": "Vegetable Pasta Salad", "ingredients": ["Pasta", "Vegetables"] },
+    { "name": "Whole Wheat Pasta with Basil", "ingredients": ["Whole Wheat Pasta", "Basil"] },
+    { "name": "Almond Butter Smoothie", "ingredients": ["Almond Butter"] },
+    { "name": "Chilled Avocado Soup", "ingredients": ["Avocados"] },
+    { "name": "Apple and Cucumber Salad", "ingredients": ["Apple", "Cucumber"] },
+    { "name": "Corn and Carrot Soup", "ingredients": ["Corn", "Carrot"] }
+
+                // ... (Other foods for summer)
+            ],
+            monsoon: [
+            { "name": "Mangoes (Early Varieties)", "ingredients": ["Mangoes"] },
+    { "name": "Guavas", "ingredients": ["Guavas"] },
+    { "name": "Papaya", "ingredients": ["Papaya"] },
+    { "name": "Apples", "ingredients": ["Apples"] },
+    { "name": "Chikoo (Sapodilla)", "ingredients": ["Chikoo"] },
+    { "name": "Pomegranate", "ingredients": ["Pomegranate"] },
+    { "name": "Banana", "ingredients": ["Banana"] },
+    { "name": "Pears", "ingredients": ["Pears"] },
+    { "name": "Custard Apple", "ingredients": ["Custard Apple"] },
+    { "name": "Jamun (Indian Blackberry)", "ingredients": ["Jamun"] },
+    { "name": "Lychee", "ingredients": ["Lychee"] },
+    { "name": "Watermelon", "ingredients": ["Watermelon"] },
+    { "name": "Grapes", "ingredients": ["Grapes"] },
+    { "name": "Pineapple", "ingredients": ["Pineapple"] },
+    { "name": "Gooseberries (Amla)", "ingredients": ["Gooseberries"] },
+    { "name": "Muskmelon", "ingredients": ["Muskmelon"] },
+    { "name": "Sweet Lime (Mosambi)", "ingredients": ["Sweet Lime"] },
+    { "name": "Plums", "ingredients": ["Plums"] },
+    { "name": "Avocados", "ingredients": ["Avocados"] },
+    { "name": "Pineapple", "ingredients": ["Pineapple"] },
+    { "name": "Vegetable Soup (Clear, Light)", "ingredients": ["Vegetables"] },
+    { "name": "Moong Dal Chilla", "ingredients": ["Moong Dal"] },
+    { "name": "Poha with Peanuts", "ingredients": ["Poha", "Peanuts"] },
+    { "name": "Oats Upma", "ingredients": ["Oats", "Vegetables"] },
+    { "name": "Vegetable Khichdi", "ingredients": ["Rice", "Dal", "Vegetables"] },
+    { "name": "Fresh Fruit Salad (Papaya, Watermelon)", "ingredients": ["Papaya", "Watermelon"] },
+    { "name": "Chana Masala (Light)", "ingredients": ["Chickpeas", "Spices"] },
+    { "name": "Moong Dal Khichdi", "ingredients": ["Moong Dal", "Rice"] },
+    { "name": "Rajma Chawal", "ingredients": ["Rajma", "Rice"] },
+    { "name": "Curd Rice", "ingredients": ["Rice", "Curd"] },
+    { "name": "Steamed Idli with Coconut Chutney", "ingredients": ["Rice", "Lentils", "Coconut"] },
+    { "name": "Bajra Roti with Curd", "ingredients": ["Bajra", "Curd"] },
+    { "name": "Vegetable Stew (without Heavy Spices)", "ingredients": ["Vegetables"] },
+    { "name": "Khakra (Baked) with Yogurt", "ingredients": ["Whole Wheat", "Yogurt"] },
+    { "name": "Kachumber Salad (Cucumber, Tomato, Onion)", "ingredients": ["Cucumber", "Tomato", "Onion"] },
+    { "name": "Vegetable Stir Fry (Broccoli, Carrots, Peas)", "ingredients": ["Broccoli", "Carrots", "Peas"] },
+    { "name": "Tofu Stir-fry", "ingredients": ["Tofu", "Vegetables"] },
+    { "name": "Methi Thepla", "ingredients": ["Methi", "Whole Wheat"] },
+    { "name": "Bhindi (Okra) Stir-fry", "ingredients": ["Okra", "Spices"] },
+    { "name": "Stuffed Paratha (with Cabbage, Carrots)", "ingredients": ["Whole Wheat", "Cabbage", "Carrots"] },
+    { "name": "Tofu and Peas Curry", "ingredients": ["Tofu", "Peas", "Spices"] },
+    { "name": "Vegetable Upma", "ingredients": ["Vegetables", "Semolina"] },
+    { "name": "Pesarattu (Green Gram Dosa)", "ingredients": ["Green Gram"] },
+    { "name": "Vegetable Dal", "ingredients": ["Dal", "Vegetables"] },
+    { "name": "Rajgira (Amaranth) Roti", "ingredients": ["Rajgira"] },
+    { "name": "Palak Curry", "ingredients": ["Spinach", "Spices"] },
+    { "name": "Dhokla (Steamed, Light)", "ingredients": ["Gram Flour"] },
+    { "name": "Baked Vegetable Samosas", "ingredients": ["Whole Wheat", "Vegetables"] },
+    { "name": "Raw Mango Curry (Aam ka Chutney)", "ingredients": ["Raw Mango", "Spices"] },
+    { "name": "Vegetable Cutlet (Baked)", "ingredients": ["Vegetables"] }
+                // ... (Other foods for monsoon)
+            ],
+            winter: [
+            { "name": "Oranges", "ingredients": ["Oranges"] },
+    { "name": "Guavas", "ingredients": ["Guavas"] },
+    { "name": "Apples", "ingredients": ["Apples"] },
+    { "name": "Pears", "ingredients": ["Pears"] },
+    { "name": "Pomegranates", "ingredients": ["Pomegranates"] },
+    { "name": "Papaya", "ingredients": ["Papaya"] },
+    { "name": "Sweet Lime (Mosambi)", "ingredients": ["Sweet Lime (Mosambi)"] },
+    { "name": "Grapes", "ingredients": ["Grapes"] },
+    { "name": "Kiwi", "ingredients": ["Kiwi"] },
+    { "name": "Pineapple", "ingredients": ["Pineapple"] },
+    { "name": "Custard Apple (Sharifa)", "ingredients": ["Custard Apple (Sharifa)"] },
+    { "name": "Chikoo (Sapodilla)", "ingredients": ["Chikoo (Sapodilla)"] },
+    { "name": "Tangerines", "ingredients": ["Tangerines"] },
+    { "name": "Dates (Fresh)", "ingredients": ["Dates (Fresh)"] },
+    { "name": "Amla (Indian Gooseberry)", "ingredients": ["Amla (Indian Gooseberry)"] },
+    { "name": "Banana", "ingredients": ["Banana"] },
+    { "name": "Strawberries", "ingredients": ["Strawberries"] },
+    { "name": "Mangoes (Early Varieties)", "ingredients": ["Mangoes (Early Varieties)"] },
+    { "name": "Avocados", "ingredients": ["Avocados"] },
+    { "name": "Tamarind (Raw, in Small Quantities)", "ingredients": ["Tamarind (Raw, in Small Quantities)"] },
+    { "name": "Oats Porridge (Breakfast)", "ingredients": ["Oats", "Milk", "Jaggery"] },
+    { "name": "Whole Wheat Paratha (with Ghee)", "ingredients": ["Whole Wheat Flour", "Ghee", "Salt"] },
+    { "name": "Moong Dal Khichdi", "ingredients": ["Moong Dal", "Rice", "Ghee", "Spices"] },
+    { "name": "Vegetable Soup (Carrot, Spinach, Pumpkin)", "ingredients": ["Carrot", "Spinach", "Pumpkin", "Onion", "Spices"] },
+    { "name": "Gajar Ka Halwa (Made with Jaggery)", "ingredients": ["Carrot", "Jaggery", "Ghee", "Milk"] },
+    { "name": "Sprouted Lentil Salad", "ingredients": ["Sprouted Lentils", "Tomato", "Cucumber", "Onion", "Coriander"] },
+    { "name": "Vegetable Stew with Coconut Milk", "ingredients": ["Vegetables", "Coconut Milk", "Spices"] },
+    { "name": "Ragi Dosa", "ingredients": ["Ragi Flour", "Rice Flour", "Water", "Salt"] },
+    { "name": "Methi Thepla", "ingredients": ["Fenugreek Leaves", "Whole Wheat Flour", "Spices", "Ghee"] },
+    { "name": "Palak Paneer", "ingredients": ["Spinach", "Paneer", "Spices"] },
+    { "name": "Lauki (Bottle Gourd) Curry", "ingredients": ["Bottle Gourd", "Tomato", "Spices"] },
+    { "name": "Baingan Bharta", "ingredients": ["Eggplant", "Tomato", "Onion", "Spices"] },
+    { "name": "Aloo Gobi", "ingredients": ["Potato", "Cauliflower", "Spices"] },
+    { "name": "Tofu Stir-fry", "ingredients": ["Tofu", "Vegetables", "Soy Sauce", "Spices"] },
+    { "name": "Quinoa Salad", "ingredients": ["Quinoa", "Vegetables", "Lemon Juice", "Olive Oil"] },
+    { "name": "Brown Rice with Mixed Vegetables", "ingredients": ["Brown Rice", "Mixed Vegetables", "Spices"] },
+    { "name": "Chapati with Dal", "ingredients": ["Whole Wheat Flour", "Dal", "Spices"] },
+    { "name": "Green Vegetable Salad (Spinach, Kale)", "ingredients": ["Spinach", "Kale", "Lemon", "Olive Oil"] },
+    { "name": "Bajra Roti (Pearl Millet)", "ingredients": ["Bajra Flour", "Water", "Salt"] },
+    { "name": "Mung Bean Curry", "ingredients": ["Mung Beans", "Onion", "Tomato", "Spices"] },
+    { "name": "Bhindi (Okra) Fry", "ingredients": ["Okra", "Spices", "Oil"] },
+    { "name": "Mixed Vegetable Curry", "ingredients": ["Mixed Vegetables", "Spices", "Tomato"] },
+    { "name": "Cabbage Sabzi", "ingredients": ["Cabbage", "Onion", "Spices"] },
+    { "name": "Khandvi", "ingredients": ["Gram Flour", "Yogurt", "Spices"] },
+    { "name": "Dhokla", "ingredients": ["Rice Flour", "Chickpea Flour", "Yogurt", "Spices"] },
+    { "name": "Chana Masala", "ingredients": ["Chickpeas", "Tomato", "Onion", "Spices"] },
+    { "name": "Tofu Tikka", "ingredients": ["Tofu", "Yogurt", "Spices"] },
+    { "name": "Fresh Coconut Water", "ingredients": ["Coconut Water"] },
+    { "name": "Fresh Buttermilk", "ingredients": ["Buttermilk", "Spices"] },
+    { "name": "Fruit Salad (Apple, Orange, Pomegranate)", "ingredients": ["Apple", "Orange", "Pomegranate"] },
+    { "name": "Amaranth (Rajgira) Roti", "ingredients": ["Amaranth Flour", "Water", "Salt"] },
+    { "name": "Rajma (Kidney Beans) Curry", "ingredients": ["Kidney Beans", "Tomato", "Onion", "Spices"] },
+    { "name": "Chole", "ingredients": ["Chickpeas", "Onion", "Tomato", "Spices"] },
+    { "name": "Stuffed Paratha (with Paneer or Vegetables)", "ingredients": ["Whole Wheat Flour", "Paneer", "Spices"] },
+    { "name": "Poha (with Peanuts, Peas, and Veggies)", "ingredients": ["Poha", "Peanuts", "Peas", "Spices"] },
+    { "name": "Whole Wheat Sandwiches (with Cucumber, Tomato, Lettuce)", "ingredients": ["Whole Wheat Bread", "Cucumber", "Tomato", "Lettuce"] },
+    { "name": "Masala Oats", "ingredients": ["Oats", "Onion", "Spices"] },
+    { "name": "Khichdi with Ghee and Vegetables", "ingredients": ["Rice", "Lentils", "Vegetables", "Ghee"] },
+    { "name": "Carrot and Beetroot Salad", "ingredients": ["Carrot", "Beetroot", "Lemon"] },
+    { "name": "Dosa with Coconut Chutney", "ingredients": ["Rice Flour", "Lentils", "Coconut", "Spices"] },
+    { "name": "Green Tea with Nuts", "ingredients": ["Green Tea", "Nuts"] },
+    { "name": "Yogurt with Flaxseeds", "ingredients": ["Yogurt", "Flaxseeds"] },
+    { "name": "Millet Upma", "ingredients": ["Millet", "Vegetables", "Spices"] },
+    { "name": "Methi-Methi Na Thepla", "ingredients": ["Fenugreek", "Whole Wheat Flour", "Spices"] },
+    { "name": "Vegetable Biryani", "ingredients": ["Rice", "Mixed Vegetables", "Spices"] },
+    { "name": "Kalonji (Nigella) Seeds and Methi Tea", "ingredients": ["Nigella Seeds", "Fenugreek Seeds", "Water"] },
+    { "name": "Jowar (Sorghum) Roti", "ingredients": ["Jowar Flour", "Water", "Salt"] },
+    { "name": "Tofu with Stir-fried Vegetables", "ingredients": ["Tofu", "Vegetables", "Soy Sauce"] },
+    { "name": "Cucumber Raita", "ingredients": ["Cucumber", "Yogurt", "Spices"] },
+    { "name": "Methi-Methi Soup", "ingredients": ["Fenugreek", "Lentils", "Spices"] },
+    { "name": "Apple Cinnamon Smoothie", "ingredients": ["Apple", "Cinnamon", "Milk"] },
+    { "name": "Moong Dal Soup", "ingredients": ["Moong Dal", "Spices"] },
+    { "name": "Fresh Fruit Chaat", "ingredients": ["Fruits", "Chaat Masala"] },
+    { "name": "Almond Milk Smoothie with Berries", "ingredients": ["Almond Milk", "Berries", "Honey"] },
+    { "name": "Masala Papad with Veggies", "ingredients": ["Papad", "Vegetables", "Spices"] },
+    { "name": "Sweet Potato Curry", "ingredients": ["Sweet Potato", "Tomato", "Spices"] },
+    { "name": "Roasted Nuts (Almonds, Walnuts, Pistachios)", "ingredients": ["Almonds", "Walnuts", "Pistachios"] },
+    { "name": "Veg Cutlet (made with Oats)", "ingredients": ["Oats", "Vegetables", "Spices"] },
+    { "name": "Millet Dosa", "ingredients": ["Millet Flour", "Rice Flour", "Water"] },
+    { "name": "Paneer Bhurji", "ingredients": ["Paneer", "Onion", "Tomato", "Spices"] },
+    { "name": "Banana Walnut Porridge", "ingredients": ["Banana", "Walnuts", "Oats", "Milk"] },
+    { "name": "Chana Chaat (Chickpeas, Onion, Tomato, Spices)", "ingredients": ["Chickpeas", "Onion", "Tomato", "Spices"] },
+    { "name": "Palak Chaat", "ingredients": ["Spinach", "Yogurt", "Spices"] },
+    { "name": "Tofu and Spinach Soup", "ingredients": ["Tofu", "Spinach", "Spices"] },
+    { "name": "Veg Paratha with Dahi", "ingredients": ["Whole Wheat Flour", "Vegetables", "Yogurt"] },
+    { "name": "Curd Rice with Mustard Seeds", "ingredients": ["Rice", "Yogurt", "Mustard Seeds"] },
+    { "name": "Gajar (Carrot) Soup", "ingredients": ["Carrot", "Onion", "Spices"] },
+    { "name": "Sprouts Chaat", "ingredients": ["Sprouts", "Onion", "Tomato", "Spices"] },
+    { "name": "Carrot Halwa (with Jaggery)", "ingredients": ["Carrot", "Jaggery", "Ghee", "Milk"] },
+    { "name": "Moringa Powder Smoothie", "ingredients": ["Moringa Powder", "Milk", "Honey"] },
+    { "name": "Baida Roti (Egg Paratha)", "ingredients": ["Whole Wheat Flour", "Egg", "Spices"] },
+    { "name": "Vegetable Samosa (Baked)", "ingredients": ["Potato", "Peas", "Spices", "Whole Wheat Flour"] },
+    { "name": "Chana Dal Khichdi", "ingredients": ["Chana Dal", "Rice", "Ghee", "Spices"] },
+    { "name": "Mushroom Curry", "ingredients": ["Mushrooms", "Onion", "Tomato", "Spices"] },
+    { "name": "Moong Dal Pancake", "ingredients": ["Moong Dal", "Spices"] },
+    { "name": "Vegetable Cutlet", "ingredients": ["Vegetables", "Oats", "Spices"] },
+    { "name": "Pesarattu (Green Gram Pancake)", "ingredients": ["Green Gram", "Rice", "Spices"] },
+    { "name": "Sweet Corn Soup", "ingredients": ["Sweet Corn", "Spices"] },
+    { "name": "Baked Vegetable Chips", "ingredients": ["Vegetables", "Olive Oil", "Spices"] },
+    { "name": "Millet Pudding (with Jaggery)", "ingredients": ["Millet", "Jaggery", "Milk"] }
+                // ... (Other foods for winter)
+            ]
+        };
+    
+        let weeklyPlan = JSON.parse(localStorage.getItem('weeklyPlan')) || [];
+        let groceryList = JSON.parse(localStorage.getItem('groceryList')) || [];
+    
+        function initializePage() {
+            showFoodList();
+            updateFoodListSection();
+            updateGroceryList();
+        }
+    
+        function showFoodList() {
+            const season = document.getElementById('season').value;
+            const foodList = seasonalFoods[season];
+            const mealPlanSelect = document.getElementById('mealPlan');
+            mealPlanSelect.innerHTML = '<option value="">--Select Food--</option>';
+    
+            foodList.forEach(food => {
+                const option = document.createElement('option');
+                option.value = food.name;
+                option.textContent = food.name;
+                mealPlanSelect.appendChild(option);
+            });
+        }
+    
+        function searchFood() {
+            const searchQuery = document.getElementById('foodSearch').value.toLowerCase();
+            const season = document.getElementById('season').value;
+            const filteredFoods = seasonalFoods[season].filter(food =>
+                food.name.toLowerCase().includes(searchQuery)
+            );
+            const mealPlanSelect = document.getElementById('mealPlan');
+            mealPlanSelect.innerHTML = '<option value="">--Select Food--</option>';
+    
+            filteredFoods.forEach(food => {
+                const option = document.createElement('option');
+                option.value = food.name;
+                option.textContent = food.name;
+                mealPlanSelect.appendChild(option);
+            });
+        }
+    
+        function addToMealPlan() {
+            const selectedFood = document.getElementById('mealPlan').value;
+            const season = document.getElementById('season').value;
+            const mealTime = document.getElementById('mealTime').value;
+    
+            const food = seasonalFoods[season].find(f => f.name === selectedFood);
+    
+            if (food) {
+                const newMeal = {
+                    name: food.name,
+                    mealTime: mealTime,
+                    ingredients: food.ingredients
+                };
+    
+                weeklyPlan.push(newMeal);
+    
+                food.ingredients.forEach(ingredient => {
+                    if (!groceryList.includes(ingredient)) {
+                        groceryList.push(ingredient);
+                    }
+                });
+    
+                updateFoodListSection();
+                updateGroceryList();
+                saveData();
+            }
+        }
+    
+        function removeFoodFromList(index) {
+            const removedFood = weeklyPlan.splice(index, 1)[0];
+    
+            removedFood.ingredients.forEach(ingredient => {
+                groceryList = groceryList.filter(item => item !== ingredient);
+            });
+    
+            updateFoodListSection();
+            updateGroceryList();
+            saveData();
+        }
+    
+        function removeIngredientFromGroceryList(index) {
+            groceryList.splice(index, 1);
+            updateGroceryList();
+            saveData();
+        }
+    
+        function updateFoodListSection() {
+            const foodListSection = document.getElementById('foodListSection');
+            foodListSection.innerHTML = '';
+    
+            weeklyPlan.forEach((food, index) => {
+                const div = document.createElement('div');
+                div.textContent = `${food.name} - ${food.mealTime.charAt(0).toUpperCase() + food.mealTime.slice(1)}`;
+    
+                const removeBtn = document.createElement('button');
+                removeBtn.textContent = "Remove";
+                removeBtn.onclick = () => removeFoodFromList(index);
+    
+                div.appendChild(removeBtn);
+                foodListSection.appendChild(div);
+            });
+        }
+    
+        function updateGroceryList() {
+            const groceryListSection = document.getElementById('groceryListSection');
+            groceryListSection.innerHTML = '';
+    
+            groceryList.forEach((ingredient, index) => {
+                const div = document.createElement('div');
+                div.textContent = ingredient;
+    
+                const removeBtn = document.createElement('button');
+                removeBtn.textContent = "Remove";
+                removeBtn.onclick = () => removeIngredientFromGroceryList(index);
+    
+                div.appendChild(removeBtn);
+                groceryListSection.appendChild(div);
+            });
+        }
+    
+        function saveData() {
+            localStorage.setItem('weeklyPlan', JSON.stringify(weeklyPlan));
+            localStorage.setItem('groceryList', JSON.stringify(groceryList));
+        }
+    
+        // Toggle grocery list visibility
+        function toggleGroceryList() {
+            const groceryListSection = document.getElementById('groceryListSection');
+            groceryListSection.style.display = groceryListSection.style.display === 'none' || groceryListSection.style.display === '' ? 'block' : 'none';
+        }
+    
+        // Initial call to set up the page
+        initializePage();
+    </script>
+    
+
+    
+    
+  <!-- Hide Header on Scroll Down, Show on Scroll Up -->
+
+  <script>
+    // Toggle Menu on Mobile
+    const toggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    toggle.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+    });
+
+    // Hide Header on Scroll Down, Show on Scroll Up
+    let lastScrollTop = 0;
+    const header = document.querySelector("header");
+
+    window.addEventListener("scroll", function () {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop) {
+            // Scroll down
+            header.style.top = "-100px";
+        } else {
+            // Scroll up
+            header.style.top = "0";
+        }
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+</script>
+
+</body>
+</html>

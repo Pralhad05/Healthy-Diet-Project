@@ -1,0 +1,622 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Healthy Diet Plans - Blog</title> 
+    <style> 
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Arial', sans-serif; 
+        } 
+ 
+        body { 
+            background-image: url('static/Screenshot 2025-03-23 220744.png'); 
+            background-size: cover; 
+            background-position: center center; 
+            background-attachment: fixed; 
+            color: #2c3e50; 
+            line-height: 1.6; 
+            padding: 20px; 
+            padding-top: 0; 
+            margin-top: 0; 
+        } 
+ 
+ /* Header Styles */ 
+ header { 
+            background-color: rgba(122, 67, 177, 0.8); 
+            padding: 20px 40px; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+            transform-style: preserve-3d; /* Maintain 3D effect on hover */ 
+            margin-top: 0; 
+            width: 100vw;              /*      Add this line */ 
+            margin-left: -20px;        /*      Adjust for body padding */ 
+            border-bottom: 2px solid white; /*      Add this line */ 
+        } 
+ 
+header nav { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+} 
+ 
+.logo h1 { 
+    font-size: 2.5rem; 
+    font-weight: bold; 
+    color: #fff; 
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); 
+} 
+ 
+header nav ul { 
+    list-style: none; 
+    display: flex; 
+    gap: 30px; 
+} 
+ 
+header nav ul li { 
+    padding: 8px 15px; 
+} 
+ 
+header nav ul li a { 
+    text-decoration: none; 
+    color: #fff; 
+    font-size: 1.1rem; 
+    padding: 10px 20px; 
+    border-radius: 8px; 
+    transition: all 0.3s ease; 
+} 
+ 
+header nav ul li a:hover { 
+    background-color: #e74c3c; 
+    transform: scale(1.1) translateY(-5px); 
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2); 
+} 
+ 
+ 
+        .blog { 
+            margin-top: 40px; 
+        } 
+ 
+        .blog h2 { 
+            font-size: 2.5rem; 
+            color: #3498db; 
+            text-align: center; 
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); 
+        } 
+ 
+        .create-post { 
+            margin: 30px 0; 
+            background-color: #fff; 
+            padding: 30px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+        } 
+ 
+        .create-post h3 { 
+            font-size: 2rem; 
+            color: #3498db; 
+            margin-bottom: 20px; 
+        } 
+ 
+        .create-post label { 
+            display: block; 
+            margin: 10px 0; 
+            font-size: 1.1rem; 
+            color: #34495e; 
+        } 
+ 
+        .create-post input, .create-post textarea { 
+            width: 100%; 
+            padding: 10px; 
+            margin-top: 8px; 
+            border: 1px solid #ccc; 
+            border-radius: 8px; 
+            font-size: 1rem; 
+        } 
+ 
+        .create-post button { 
+            background-color: #2ecc71; 
+            color: white; 
+            padding: 12px 25px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 1rem; 
+            transition: background-color 0.3s ease, transform 0.3s ease; 
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); 
+        } 
+ 
+        .create-post button:hover { 
+            transform: translateY(-4px); 
+            background-color: #27ae60; 
+        } 
+ 
+        .blog-post { 
+            background-color: #fff; 
+            padding: 20px; 
+            margin: 15px 0; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+        } 
+ 
+        .blog-post:hover { 
+            transform: scale(1.03); 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); 
+        } 
+ 
+        .post-content { 
+            margin-bottom: 15px; 
+            font-size: 1rem; 
+            color: #7f8c8d; 
+        } 
+ 
+        .read-more { 
+            text-decoration: none; 
+            color: #3498db; 
+            font-weight: bold; 
+        } 
+ 
+        .post-actions { 
+            margin-top: 15px; 
+            display: flex; 
+            gap: 10px; 
+            flex-wrap: wrap; 
+        } 
+ 
+        .edit-post, .delete-post { 
+            background-color: #3498db; 
+            color: white; 
+            padding: 10px 20px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            transition: background-color 0.3s ease, transform 0.3s ease; 
+        } 
+ 
+        .edit-post:hover, .delete-post:hover { 
+            background-color: #2980b9; 
+            transform: translateY(-4px); 
+        } 
+ 
+        .delete-post { 
+            background-color: #e74c3c; 
+        } 
+ 
+        .delete-post:hover { 
+            background-color: #c0392b; 
+        } 
+ 
+        .like-post, .dislike-post { 
+            color: white; 
+            padding: 10px 16px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 1rem; 
+            transition: background-color 0.3s ease, transform 0.3s ease; 
+            display: flex; 
+            align-items: center; 
+            gap: 6px; 
+        } 
+ 
+        .like-post { 
+            background-color: #2ecc71; 
+        } 
+ 
+        .like-post:hover { 
+            background-color: #27ae60; 
+            transform: translateY(-2px); 
+        } 
+ 
+        .dislike-post { 
+            background-color: #e67e22; 
+        } 
+ 
+        .dislike-post:hover { 
+            background-color: #d35400; 
+            transform: translateY(-2px); 
+        } 
+ 
+        .share-post { 
+    background-color: #8e44ad; 
+    color: white; 
+    padding: 10px 18px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+} 
+ 
+.share-post:hover { 
+    background-color: #71368a; 
+    transform: translateY(-2px); 
+} 
+
+
+ 
+        footer { 
+            text-align: center; 
+            margin-top: 40px; 
+            padding: 20px 0; 
+            background-color: #2c3e50; 
+            color: #fff; 
+            font-size: 1rem; 
+        } 
+         
+    /* adjust properly on any screen size (mobile, tablet, laptop, desktop) */ 
+/* Medium Devices (Tablets, 768px and up) */
+@media (max-width: 992px) {
+    header nav ul {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    header nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .contact-card, .website-info {
+        padding: 20px;
+    }
+
+    .logo h1 {
+        font-size: 2rem;
+    }
+
+    header nav ul li a {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+}
+/* Small Devices (Phones, 600px and below) */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    header {
+        padding: 10px 20px;
+        margin-left: -10px;
+    }
+
+    .logo h1 {
+        font-size: 1.5rem;
+        text-align: center;
+        width: 100%;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+        width: 100%;
+    }
+
+    header nav ul li a {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .contact-card, .website-info {
+        margin-top: 20px;
+        padding: 15px;
+        font-size: 1rem;
+    }
+
+    .website-info h3 {
+        font-size: 1.5rem;
+    }
+
+    .contact-info h2 {
+        font-size: 2rem;
+    }
+
+    .contact-card button {
+        width: 100%;
+    }
+
+    footer {
+        font-size: 0.9rem;
+        padding: 10px 0;
+    }
+}
+
+/* Hamburger Button Style */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+}
+
+/* Responsive Navigation */
+@media (max-width: 992px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    header nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(122, 67, 177, 0.95);
+        margin-top: 10px;
+    }
+
+    #nav-links.show {
+        display: flex;
+    }
+
+    #nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    #nav-links li a {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+    }
+}
+
+/* Medium Screens: Resize fonts better on smaller laptops/tablets */
+@media (max-width: 992px) {
+    .logo h1 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    header nav ul li a {
+        font-size: 0.95rem;
+        padding: 6px 12px;
+    }
+
+    .menu-toggle {
+        font-size: 1.8rem;
+    }
+
+    body {
+        font-size: 0.95rem;
+    }
+}
+
+/* Slightly smaller text for tighter split screens */
+@media (max-width: 992px) {
+    .logo h1 {
+        font-size: 1.6rem;
+    }
+
+    header nav ul li a {
+        font-size: 0.9rem;
+    }
+
+    body {
+        font-size: 0.9rem;
+    }
+}
+
+/* Scroll hide/show animation */
+header {
+    transition: top 0.3s;
+}
+.post-buttons {
+            margin-top: 10px;
+        }
+        .post-buttons form {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .post-buttons button {
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .like-button {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .dislike-button {
+            background-color: #f44336;
+            color: white;
+        }
+        .edit-button {
+            background-color: #2196F3;
+            color: white;
+        }
+        .share-button {
+            background-color: #e7e7e7;
+            color: black;
+        }
+
+
+        .btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-sm {
+  font-size: 0.85rem;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+  padding: 10px 20px; /* Adds padding for better spacing */
+  border-radius: 5px; /* Rounds the corners */
+  font-size: 16px; /* Adjusts font size */
+  font-weight: bold; /* Makes the text bold */
+  border: none; /* Removes any default border */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.btn-danger:hover {
+  background-color: #c82333; /* Darkens the button color when hovered */
+  transform: scale(1.05); /* Slightly increases the size on hover */
+  cursor: pointer; /* Changes cursor to pointer when hovered */
+}
+
+.btn-danger:focus {
+  outline: none; /* Removes outline on focus */
+  box-shadow: 0 0 5px rgba(220, 53, 69, 0.5); /* Adds a glow effect on focus */
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+     
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="{{ url_for('home') }}" style="text-decoration: none;">
+                    <h1>Healthy Diet Plans</h1>
+                </a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+            <ul id="nav-links">
+                <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+                <li><a href="{{ url_for('bmi_calculator') }}">BMI Calculator</a></li>
+                <li><a href="{{ url_for('calorie_calculator') }}">Calorie Calculator</a></li>
+                <li><a href="{{ url_for('diet_plan') }}">Diet Plan</a></li>
+                <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
+                <li><a href="{{ url_for('blog') }}">Blog</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+
+    <div class="create-post">
+        <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+        <h3>Create a New Blog Post</h3>
+        <form method="POST" action="{{ url_for('blog') }}" enctype="multipart/form-data">
+            <input type="text" name="title" placeholder="Title" required>
+            <textarea name="content" placeholder="Content" rows="5" required></textarea>
+            <input type="file" name="image" accept="image/*">
+            <button type="submit">Submit</button>
+            
+        </form>
+    </div>
+
+    <div id="postsContainer">
+        {% for post in posts %}
+        <div class="blog-post">
+            {% if post.image %}
+            <img src="{{ post.image }}" class="post-image" style="max-width: 300px;" alt="Post Image">
+            {% endif %}
+            <h3>{{ post.title }}</h3>
+            <p class="post-content">{{ post.content }}</p>
+            <p><strong>Posted by:</strong> {{ post.username }}</p>
+    
+            <div class="post-actions">
+                <form method="POST" action="{{ url_for('like_post', post_id=post.id) }}">
+                    <button type="submit">👍 Like ({{ post.likes }})</button>
+                </form>
+                <form method="POST" action="{{ url_for('dislike_post', post_id=post.id) }}">
+                    <button type="submit">👎 Dislike ({{ post.dislikes }})</button>
+                </form>
+                <form method="POST" action="{{ url_for('share_post', post_id=post.id) }}">
+                    <button type="submit">Share</button>
+                </form>
+    
+                {% if session['is_admin'] or post.user_id == session['user_id'] %}
+                <form method="POST" action="{{ url_for('delete_post', post_id=post.id) }}">
+                    <button type="submit" class="btn-delete">Delete</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const contentLimit = 200; // character limit for preview
+            document.querySelectorAll('.blog-post').forEach(post => {
+                const content = post.querySelector('.post-content');
+                const fullText = content.innerText;
+                
+                if (fullText.length > contentLimit) {
+                    const shortText = fullText.substring(0, contentLimit) + '...';
+                    content.innerText = shortText;
+        
+                    const toggleBtn = document.createElement('button');
+                    toggleBtn.innerText = 'Show More';
+                    toggleBtn.className = 'toggle-btn';
+        
+                    toggleBtn.addEventListener('click', () => {
+                        if (toggleBtn.innerText === 'Show More') {
+                            content.innerText = fullText;
+                            toggleBtn.innerText = 'Show Less';
+                        } else {
+                            content.innerText = shortText;
+                            toggleBtn.innerText = 'Show More';
+                        }
+                    });
+        
+                    post.appendChild(toggleBtn);
+                }
+            });
+        });
+        const toggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+    
+        toggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        function toggleMenu() {
+        const menu = document.getElementById("nav-links");
+        menu.classList.toggle("show");
+    }
+        </script>
+        
+
+    <footer>
+        <p>&copy; 2025 Healthy Diet Plans | All rights reserved.</p>
+    </footer>      
+</body>
+</html>
