@@ -1,17 +1,10 @@
 [build]
   command = "pip install -r requirements.txt && python build.py"
-  publish = "build/static"
+  publish = "build"
   functions = "functions"
 
 [build.environment]
   PYTHON_VERSION = "3.9"
-  FLASK_APP = "appmy.py"
-  FLASK_ENV = "production"
-
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/flask_app/:splat"
-  status = 200
 
 [[redirects]]
   from = "/*"
@@ -20,11 +13,4 @@
 
 [functions]
   directory = "functions"
-  node_bundler = "esbuild"
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
-    X-Content-Type-Options = "nosniff" 
+  node_bundler = "esbuild" 
