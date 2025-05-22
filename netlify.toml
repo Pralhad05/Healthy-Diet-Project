@@ -5,6 +5,8 @@
 
 [build.environment]
   PYTHON_VERSION = "3.9"
+  FLASK_APP = "appmy.py"
+  FLASK_ENV = "production"
 
 [[redirects]]
   from = "/api/*"
