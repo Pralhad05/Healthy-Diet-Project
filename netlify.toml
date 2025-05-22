@@ -4,11 +4,12 @@
   functions = "functions"
 
 [build.environment]
-  PYTHON_VERSION = "3.9"
+  PYTHON_VERSION = "3.9.18"
   PIP_VERSION = "21.3.1"
   FLASK_APP = "appmy.py"
   FLASK_ENV = "production"
   PYTHONUNBUFFERED = "1"
+  NODE_VERSION = "18"
 
 [[redirects]]
   from = "/*"
